@@ -80,7 +80,7 @@
                                         <div class="swiper-wrapper">
                                             <div class="swiper-slide">
                                                 <div class="single-img">
-                                                    <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-1.jpg" alt="Product Image">
+                                                    <img src=" " alt="..." id="pthumbnail">
                                                 </div>
                                             </div>
                                             <div class="swiper-slide">
@@ -143,7 +143,7 @@
 
                             <!-- Quick View Description Start -->
                             <div class="quick-view-description">
-                                <h4 class="product-name">Your Products Name Here.</h4>
+                                <h4 class="product-name"><span id="pname"></span></h4>
                                 <div class="price">
                                     <span class="sale-price">$240.00</span>
                                     <span class="old-price">$290.00</span>
@@ -197,16 +197,13 @@
 
                                 <div class="product-info">
                                     <div class="single-info">
-                                        <span class="lable">SKU:</span>
-                                        <span class="value">Ch-256xl</span>
+                                        <span class="lable">Product Code:  <strong id="pcode"></strong></span>
                                     </div>
                                     <div class="single-info">
-                                        <span class="lable">Categories:</span>
-                                        <span class="value"><a href="#">Office,</a> <a href="#">Home</a></span>
+                                        <span class="lable">Categories: <strong id="pcategory"></strong></span>
                                     </div>
                                     <div class="single-info">
-                                        <span class="lable">tag:</span>
-                                        <span class="value"><a href="#">Furniture</a></span>
+                                        <span class="lable">Brand: <strong id="pbrand"></strong></span>
                                     </div>
                                     <div class="single-info">
                                         <span class="lable">Share:</span>
@@ -262,6 +259,60 @@
 
     <!-- Main JS -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js"></script>
+
+    <script>
+        @if(Session::has('message')){
+            var type = "{{ Session::get('alert-type','info') }}"
+            switch(type){
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
+        }
+        @endif
+    </script>
+
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+            }
+        })
+        // Start Product View with Modal
+        function productView(id){
+            // alert(id)
+            $.ajax({
+                type: 'GET',
+                url: '/product/view/modal/'+id,
+                dataType:'json',
+                success:function(data){
+                    $('#pname').text(data.product.product_name);
+                    $('#pthumbnail').attr('src', '/'+data.product.product_thumbnail);
+                    $('#short_desc').text(data.product.short_desc);
+                    $('#pcode').text(data.product.product_code);
+                    $('#price').text(data.product.selling_price);
+                    $('#pcategory').text(data.product.category.category_title);
+                    $('#pbrand').text(data.product.brand.brand_name);
+                    $('#multi_image').attr('src', '/'+data.product.multiimg.photo_name)
+                }
+            })
+
+        }
+    </script>
 
 </body>
 

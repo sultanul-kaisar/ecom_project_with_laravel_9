@@ -130,7 +130,7 @@
                                             <a href="{{ route('product.details', [$product->id, $product->product_slug]) }}"><img src="{{ $product->product_thumbnail }}" alt="product"></a>
 
                                             <ul class="product-meta">
-                                                <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" href="#"><i class="pe-7s-search"></i></a></li>
+                                                <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" id="{{ $product->id }}" onclick="productView(this.id)"><i class="pe-7s-search"></i></a></li>
                                                 <li><a class="action" href="#"><i class="pe-7s-shopbag"></i></a></li>
                                                 <li><a class="action" href="#"><i class="pe-7s-like"></i></a></li>
                                             </ul>
@@ -178,7 +178,7 @@
                                                 <a href="{{ route('product.details', [$product->id, $product->product_slug]) }}"><img src="{{ $product->product_thumbnail }}" alt="product"></a>
 
                                                 <ul class="product-meta">
-                                                    <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" href="#"><i class="pe-7s-search"></i></a></li>
+                                                    <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" id="{{ $product->id }}" onclick="productView(this.id)"><i class="pe-7s-search"></i></a></li>
                                                     <li><a class="action" href="#"><i class="pe-7s-shopbag"></i></a></li>
                                                     <li><a class="action" href="#"><i class="pe-7s-like"></i></a></li>
                                                 </ul>
