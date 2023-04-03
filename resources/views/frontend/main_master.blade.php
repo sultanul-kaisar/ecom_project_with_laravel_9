@@ -145,8 +145,12 @@
                             <div class="quick-view-description">
                                 <h4 class="product-name"><span id="pname"></span></h4>
                                 <div class="price">
-                                    <span class="sale-price">$240.00</span>
-                                    <span class="old-price">$290.00</span>
+                                    @if ($product->discount_price == NULL)
+                                        <span class="sale-price">$<strong id="selling_price"></strong></span>
+                                    @else
+                                        <span class="sale-price">$<strong id="discount_price"></strong></span>
+                                        <span class="old-price">$<strong id="selling_price"></strong></span>
+                                    @endif
                                 </div>
                                 <div class="review-wrapper">
                                     <div class="review-star">
@@ -154,29 +158,34 @@
                                     </div>
                                     <p>( 1 Customer Review )</p>
                                 </div>
-                                <div class="product-color">
-                                    <span class="lable">Color:</span>
-                                    <ul>
-                                        <li>
-                                            <input type="radio" name="colors" id="color1">
-                                            <label for="color1"><span class="color-blue"></span></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="colors" id="color2">
-                                            <label for="color2"><span class="color-gray"></span></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="colors" id="color3">
-                                            <label for="color3"><span class="color-dark-blue"></span></label>
-                                        </li>
-                                        <li>
-                                            <input type="radio" name="colors" id="color4">
-                                            <label for="color4"><span class="color-gray-dark"></span></label>
-                                        </li>
-                                    </ul>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="product-color">
+                                            <span class="lable" style="margin-top: 30px">Color:</span>
+                                            <div class="single-select2">
+                                                <div class="form-select2">
+                                                    <select class="select2" name="color">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6">
+                                        <div class="product-color">
+                                            <span class="lable" style="margin-top: 30px">Size:</span>
+                                            <div class="single-select2">
+                                                <div class="form-select2">
+                                                    <select class="select2" name="size">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <p>Lorem ipsum dolor sit amet, consectet adipisicing elit, sed do eiusmod temporf incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis tyu nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate.</p>
+                                <p id="short_desc"></p>
 
                                 <div class="product-meta">
                                     <div class="product-quantity d-inline-flex">
@@ -304,10 +313,30 @@
                     $('#pthumbnail').attr('src', '/'+data.product.product_thumbnail);
                     $('#short_desc').text(data.product.short_desc);
                     $('#pcode').text(data.product.product_code);
-                    $('#price').text(data.product.selling_price);
+                    $('#selling_price').text(data.product.selling_price);
+                    $('#discount_price').text(data.product.discount_price);
                     $('#pcategory').text(data.product.category.category_title);
                     $('#pbrand').text(data.product.brand.brand_name);
                     $('#multi_image').attr('src', '/'+data.product.multiimg.photo_name)
+
+                    //Color
+                    $('select[name="color"]').empty();
+                    $.each(data.color,function(key,value){
+                        $('select[name="color"]').append('<option value=" '+value+' ">'+value+' </option>')
+                    }) // end color
+
+                     // Size
+                    $('select[name="size"]').empty();
+                    $.each(data.product.size,function(key,value){
+                        $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
+                        if (data.size == "") {
+                            $('#sizeArea').hide();
+                        }else{
+                            $('#sizeArea').show();
+                        }
+                    }) // end size
+
+
                 }
             })
 
