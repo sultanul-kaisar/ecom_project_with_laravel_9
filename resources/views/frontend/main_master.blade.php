@@ -83,26 +83,9 @@
                                                     <img src=" " alt="..." id="pthumbnail">
                                                 </div>
                                             </div>
-                                            <div class="swiper-slide">
-                                                <div class="single-img">
-                                                    <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-2.jpg" alt="Product Image">
-                                                </div>
+                                            <div class="swiper-slide" id="images">
                                             </div>
-                                            <div class="swiper-slide">
-                                                <div class="single-img">
-                                                    <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-3.jpg" alt="Product Image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="single-img">
-                                                    <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-4.jpg" alt="Product Image">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <div class="single-img">
-                                                    <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-5.jpg" alt="Product Image">
-                                                </div>
-                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -112,9 +95,7 @@
                                 <div class="quick-gallery-thumbs">
                                     <div class="swiper-container">
                                         <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-1.jpg" alt="Product Thumbnail">
-                                            </div>
+
                                             <div class="swiper-slide">
                                                 <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-2.jpg" alt="Product Thumbnail">
                                             </div>
@@ -171,7 +152,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-xl-6">
+                                    <div class="col-xl-6" id="sizeArea">
                                         <div class="product-color">
                                             <span class="lable" style="margin-top: 30px">Size:</span>
                                             <div class="single-select2">
@@ -268,7 +249,7 @@
 
     <!-- Main JS -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
         @if(Session::has('message')){
@@ -317,7 +298,12 @@
                     $('#discount_price').text(data.product.discount_price);
                     $('#pcategory').text(data.product.category.category_title);
                     $('#pbrand').text(data.product.brand.brand_name);
-                    $('#multi_image').attr('src', '/'+data.product.multiimg.photo_name)
+                    // $('#multi_image').attr('src', '/'+data.product.multiimg.photo_name)
+
+                    //multiImages
+                    // $.each(data.images,function(value){
+                    //     $.append(<img src=" '+value+' " alt="Product Thumbnail">)
+                    // })
 
                     //Color
                     $('select[name="color"]').empty();
@@ -327,7 +313,7 @@
 
                      // Size
                     $('select[name="size"]').empty();
-                    $.each(data.product.size,function(key,value){
+                    $.each(data.size,function(key,value){
                         $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
                         if (data.size == "") {
                             $('#sizeArea').hide();
