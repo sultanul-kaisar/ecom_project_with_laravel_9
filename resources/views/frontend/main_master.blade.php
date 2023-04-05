@@ -45,6 +45,7 @@
 
 
 
+
     <div class="menu-overlay"></div>
 
     @yield('content')
@@ -166,10 +167,10 @@
 
                                 <div class="product-meta">
                                     <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
-                                    <div class="product-quantity d-inline-flex">
-                                        <button type="button" class="sub">-</i></button>
-                                        <input type="text" id="qty" value="1" min="1" />
-                                        <button type="button" class="add">+</button>
+                                    <div class="col-xl-2 product-quantity d-inline-flex">
+                                        {{-- <button type="button" class="sub">-</i></button> --}}
+                                        <input style="width: 74px;" type="number" id="qty" value="1" min="1" />
+                                        {{-- <button type="button" class="add">+</button> --}}
                                     </div>
                                     <div class="meta-action">
                                         <input type="hidden" id="product_id">
@@ -403,12 +404,22 @@
                 }
             })
         }
-
-
-
-
-
     </script>
+
+
+    //Minicart
+    <script type="text/javascript">
+        function miniCart(){
+           $.ajax({
+               type: 'GET',
+               url: '/product/mini/cart',
+               dataType:'json',
+               success:function(response){
+                   console.log(response)
+               }
+           })
+        }
+   </script>
 
 </body>
 

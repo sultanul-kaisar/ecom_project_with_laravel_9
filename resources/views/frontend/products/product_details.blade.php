@@ -137,7 +137,7 @@
                         @else
                             <div class="col-xl-6">
                                 <div class="product-color">
-                                    <span class="lable" style="margin-top: 30px">Size:</span>
+                                    <span class="lable" style="margin-top: 20px">Size:</span>
                                     <div class="single-select2">
                                         <div class="form-select2">
                                             <select class="select2" id="size">
