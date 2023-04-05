@@ -100,7 +100,7 @@
 
                 <!-- Product Details Description Start -->
                 <div class="product-details-description">
-                    <h4 class="product-name">{{ $product->product_name }}</h4>
+                    <h4 class="product-name" id="pname">{{ $product->product_name }}</h4>
                     <div class="price">
                         @if ($product->discount_price == NULL)
                             <span class="sale-price">${{ $product->selling_price }}</span>
@@ -119,11 +119,11 @@
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="product-color">
-                                <span class="lable" style="margin-top: 30px">Color:</span>
+                                <span class="lable" style="margin-top: 20px">Color:</span>
                                 <div class="single-select2">
                                     <div class="form-select2">
-                                        <select class="select2">
-                                            <option selected="" disabled="">Select a Colour *</option>
+                                        <select class="select2" id="color">
+                                            <option selected="" disabled="">Select a Color *</option>
                                             @foreach($product_color as $color)
                                                 <option value="{{ $color }}">{{ ucwords($color) }}</option>
                                             @endforeach
@@ -132,21 +132,25 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-6">
-                            <div class="product-color">
-                                <span class="lable" style="margin-top: 30px">Size:</span>
-                                <div class="single-select2">
-                                    <div class="form-select2">
-                                        <select class="select2">
-                                            <option selected="" disabled="">Select a Size *</option>
-                                            @foreach($product_size as $size)
-                                                <option value="{{ $size }}">{{ ucwords($size) }}</option>
-                                            @endforeach
-                                        </select>
+                        @if ($product->product_size == null)
+
+                        @else
+                            <div class="col-xl-6">
+                                <div class="product-color">
+                                    <span class="lable" style="margin-top: 30px">Size:</span>
+                                    <div class="single-select2">
+                                        <div class="form-select2">
+                                            <select class="select2" id="size">
+                                                <option selected="" disabled="">Select a Size *</option>
+                                                @foreach($product_size as $size)
+                                                    <option value="{{ $size }}">{{ ucwords($size) }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
 
                     <p>{{ $product->short_desc }}</p>
@@ -154,11 +158,11 @@
                     <div class="product-meta">
                         <div class="product-quantity d-inline-flex">
                             <button type="button" class="sub">-</i></button>
-                            <input type="text" value="1" />
+                            <input type="text" id="qty" value="1" min="1" />
                             <button type="button" class="add">+</button>
                         </div>
                         <div class="meta-action">
-                            <button class="btn btn-dark btn-hover-primary">Add To Cart</button>
+                            <button type="submit" onclick="addToCart()" class="btn btn-dark btn-hover-primary">Add To Cart</button>
                         </div>
                         <div class="meta-action">
                             <a class="action" href="#"><i class="pe-7s-like"></i></a>

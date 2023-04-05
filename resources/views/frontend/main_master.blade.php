@@ -165,6 +165,7 @@
                                 <p id="short_desc"></p>
 
                                 <div class="product-meta">
+                                    <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
                                     <div class="product-quantity d-inline-flex">
                                         <button type="button" class="sub">-</i></button>
                                         <input type="text" id="qty" value="1" min="1" />
@@ -253,6 +254,8 @@
     <!-- Main JS -->
     <script src="{{ asset('frontend') }}/assets/js/main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         @if(Session::has('message')){
@@ -376,7 +379,27 @@
                 url: "/cart/data/store/"+id,
                 success:function(data){
                     $('#closeModel').click();
-                    console.log(data)
+                    // console.log(data)
+
+                    const Toast = Swal.mixin({
+                                    position: 'top-end',
+                                    toast: true,
+                                    icon: 'success',
+                                    showConfirmButton: false,
+                                    timer: 3000
+                                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+
                 }
             })
         }
