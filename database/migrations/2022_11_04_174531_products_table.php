@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('product_tags')->nullable();
             $table->string('product_size')->nullable();
             $table->string('product_color')->nullable();
+            $table->string('buying_price');
             $table->string('selling_price');
             $table->string('discount_price')->nullable();
             $table->text('short_desc')->nullable();

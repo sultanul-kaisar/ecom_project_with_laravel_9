@@ -30,8 +30,8 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.css">
 
-    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js" >
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> --}}
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js" > --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
 
     <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
@@ -65,7 +65,7 @@
     <div class="modal fade" id="quickView">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" id="closeModel" data-bs-dismiss="modal" aria-label="Close"></button>
                 <div class="modal-body">
 
                     <div class="row">
@@ -126,12 +126,8 @@
                             <div class="quick-view-description">
                                 <h4 class="product-name"><span id="pname"></span></h4>
                                 <div class="price">
-                                    @if ($product->discount_price == NULL)
-                                        <span class="sale-price">$<strong id="selling_price"></strong></span>
-                                    @else
-                                        <span class="sale-price">$<strong id="discount_price"></strong></span>
-                                        <span class="old-price">$<strong id="selling_price"></strong></span>
-                                    @endif
+                                    <span class="sale-price">$<strong id="pprice"></strong></span>
+                                    <span class="old-price"><strong id="oldprice"></strong></span>
                                 </div>
                                 <div class="review-wrapper">
                                     <div class="review-star">
@@ -145,7 +141,7 @@
                                             <span class="lable" style="margin-top: 30px">Color:</span>
                                             <div class="single-select2">
                                                 <div class="form-select2">
-                                                    <select class="select2" name="color">
+                                                    <select class="select2" id="color" name="color">
 
                                                     </select>
                                                 </div>
@@ -157,7 +153,7 @@
                                             <span class="lable" style="margin-top: 30px">Size:</span>
                                             <div class="single-select2">
                                                 <div class="form-select2">
-                                                    <select class="select2" name="size">
+                                                    <select class="select2" id="size" name="size">
 
                                                     </select>
                                                 </div>
@@ -171,11 +167,12 @@
                                 <div class="product-meta">
                                     <div class="product-quantity d-inline-flex">
                                         <button type="button" class="sub">-</i></button>
-                                        <input type="text" value="1" />
+                                        <input type="text" id="qty" value="1" min="1" />
                                         <button type="button" class="add">+</button>
                                     </div>
                                     <div class="meta-action">
-                                        <button class="btn btn-dark btn-hover-primary">Add To Cart</button>
+                                        <input type="hidden" id="product_id">
+                                        <button type="submit" class="btn btn-dark btn-hover-primary" onclick="addToCart()">Add To Cart</button>
                                     </div>
                                     <div class="meta-action">
                                         <a class="action" href="#"><i class="pe-7s-like"></i></a>
@@ -194,6 +191,12 @@
                                     </div>
                                     <div class="single-info">
                                         <span class="lable">Brand: <strong id="pbrand"></strong></span>
+                                    </div>
+                                    <div class="single-info">
+                                        <span class="lable">Stock:
+                                            <span style="background: green; color:white" id="avilable"></span>
+                                            <span style="background: yellow; color:red" id="stockout"></span>
+                                        </span>
                                     </div>
                                     <div class="single-info">
                                         <span class="lable">Share:</span>
@@ -298,7 +301,32 @@
                     $('#discount_price').text(data.product.discount_price);
                     $('#pcategory').text(data.product.category.category_title);
                     $('#pbrand').text(data.product.brand.brand_name);
+
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
                     // $('#multi_image').attr('src', '/'+data.product.multiimg.photo_name)
+
+                    //Product Price
+                    if(data.product.discount_price == null){
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.selling_price);
+                    }else{
+                        $('#pprice').text(data.product.discount_price);
+                        $('#oldprice').text(data.product.selling_price);
+                    }
+
+                    //Product Quantity
+                    if(data.product.product_qty > 0) {
+                        $('#avilable').text('');
+                        $('#stockout').text('');
+                        $('#avilable').text('Avilable');
+                    }else{
+                        $('#avilable').text('');
+                        $('#stockout').text('');
+                        $('#stockout').text('Out Of Stock');
+                    }
+
 
                     //multiImages
                     // $.each(data.images,function(value){
@@ -326,7 +354,37 @@
                 }
             })
 
+        } // End Product View with Modal
+
+        //Start Cart
+
+        function addToCart(){
+            var product_name = $('#pname').text();
+            var id = $('#product_id').val();
+            var color = $('#color option:selected').text();
+            var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data:{
+                    color:color,
+                    size:size,
+                    quantity:quantity,
+                    product_name:product_name
+                },
+                url: "/cart/data/store/"+id,
+                success:function(data){
+                    $('#closeModel').click();
+                    console.log(data)
+                }
+            })
         }
+
+
+
+
+
     </script>
 
 </body>

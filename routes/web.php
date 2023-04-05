@@ -10,6 +10,9 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
+
+
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\UserProfileController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +51,10 @@ Route::controller(IndexController::class)->group(function (){
 
     Route::get('/policy', 'Policy')->name('policy');
 
+});
+
+Route::controller(CartController::class)->group(function (){
+    Route::post('/cart/data/store/{id}', 'AddToCart');
 });
 
 ROute::middleware(['auth:web'])->group(function (){

@@ -123,6 +123,14 @@
                         <div class="row mb-4">
 
                             <div class="mb-4 col-xl-3">
+                                <label class="form-label"  >Buying Price <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="buying_price" name="buying_price" value="{{ $product->buying_price }}" placeholder="Enter product buying price" required="">
+                                @error('buying_price')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="mb-4 col-xl-3">
                                 <label class="form-label"  >Selling Price <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="selling_price" name="selling_price" value="{{ $product->selling_price }}" placeholder="Enter product selling price" required="">
                                 @error('selling_price')

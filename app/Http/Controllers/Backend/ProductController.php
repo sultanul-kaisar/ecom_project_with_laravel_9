@@ -52,6 +52,7 @@ class ProductController extends Controller
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
 
+            'buying_price' => $request->buying_price,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'short_desc_en' => $request->short_desc,
@@ -126,7 +127,8 @@ class ProductController extends Controller
             'product_tags' => $request->product_tags,
             'product_size' => $request->product_size,
             'product_color' => $request->product_color,
-
+            
+            'buying_price' => $request->buying_price,
             'selling_price' => $request->selling_price,
             'discount_price' => $request->discount_price,
             'short_desc' => $request->short_desc,
