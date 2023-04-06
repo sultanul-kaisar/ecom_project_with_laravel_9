@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -56,9 +57,15 @@ Route::controller(IndexController::class)->group(function (){
 Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}', 'AddToCart');
     Route::get('/product/mini/cart/', 'AddMiniCart');
+    Route::get('/minicart/product-remove/{rowId}', 'RemoveMiniCart');
 });
 
-ROute::middleware(['auth:web'])->group(function (){
+
+Route::controller(WishlistController::class)->group(function (){
+    Route::post('/add-to-wishlist/{id}', 'AddToWishList');
+});
+
+Route::middleware(['auth:web'])->group(function (){
     Route::controller(UserProfileController::class)->group(function (){
         Route::get('/user/dashboard', 'UserDashboard')->name('user.dashboard');
         Route::get('/user/profile', 'UserProfile')->name('user.profile');

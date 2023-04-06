@@ -21198,7 +21198,7 @@ blockquote .blockquote-name::before {
 .empty-cart .btn {
   height: 50px;
   line-height: 50px;
-  padding: 0 30px;
+  padding: 0  30px;
   font-weight: 500;
 }
 

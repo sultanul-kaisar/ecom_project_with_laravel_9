@@ -55,8 +55,15 @@ class CartController extends Controller
     	return response()->json(array(
     		'carts' => $carts,
     		'cartQty' => $cartQty,
-    		'cartTotal' => round((float)$cartTotal),
+    		'cartTotal' => $cartTotal ,
 
     	));
     } // end method
+
+
+    //Minicart Remove Product
+    public function RemoveMiniCart($rowId){
+    	Cart::remove($rowId);
+    	return response()->json(['success' => 'Product Remove from Cart']);
+    }//End Method
 }

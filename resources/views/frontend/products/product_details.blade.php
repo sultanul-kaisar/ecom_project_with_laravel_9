@@ -156,10 +156,10 @@
                     <p>{{ $product->short_desc }}</p>
 
                     <div class="product-meta">
-                        <div class="product-quantity d-inline-flex">
-                            <button type="button" class="sub">-</i></button>
-                            <input type="text" id="qty" value="1" min="1" />
-                            <button type="button" class="add">+</button>
+                        <div class="col-xl-2 product-quantity d-inline-flex">
+                            {{-- <button type="button" class="sub">-</i></button> --}}
+                            <input style="width: 74px;" type="number" id="qty" value="1" min="1" />
+                            {{-- <button type="button" class="add">+</button> --}}
                         </div>
                         <div class="meta-action">
                             <button type="submit" onclick="addToCart()" class="btn btn-dark btn-hover-primary">Add To Cart</button>

@@ -95,74 +95,28 @@
                         <div class="dropdown">
                             <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="pe-7s-shopbag"></i>
-                                <span class="number">3</span>
+                                <span class="number" id="cartQty"></span>
                             </a>
 
                             <div class="dropdown-menu dropdown-cart">
+
+
                                 <div class="cart-content" id="cart-content">
                                     <ul>
                                         <li>
                                             <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-1.jpg" alt="Cart">
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">High quality vase bottle</h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong> White </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i class="las la-times"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- Single Cart Item End -->
-                                        </li>
-                                        <li>
-                                            <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-2.jpg" alt="Cart">
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">Living & Bedroom Chair</h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong> White </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i class="las la-times"></i></a>
-                                                </div>
-                                            </div>
-                                            <!-- Single Cart Item End -->
-                                        </li>
-                                        <li>
-                                            <!-- Single Cart Item Start -->
-                                            <div class="single-cart-item">
-                                                <div class="cart-thumb">
-                                                    <img src="{{ asset('frontend') }}/assets/images/cart/cart-3.jpg" alt="Cart">
-                                                    <span class="product-quantity">1x</span>
-                                                </div>
-                                                <div class="cart-item-content">
-                                                    <h6 class="product-name">Herman Arm Grey Chair</h6>
-                                                    <span class="product-price">$19.12</span>
-                                                    <div class="attributes-content">
-                                                        <span><strong>Color:</strong> White </span>
-                                                    </div>
-                                                    <a class="cart-remove" href="#"><i class="las la-times"></i></a>
-                                                </div>
+                                            <div id="miniCart">
+
                                             </div>
                                             <!-- Single Cart Item End -->
                                         </li>
                                     </ul>
                                 </div>
-
                                 <div class="cart-price">
-                                    <div class="cart-subtotals">
+                                    {{-- <div class="cart-subtotals">
                                         <div class="price-inline">
                                             <span class="label">Subtotal</span>
-                                            <span class="value">$42.70</span>
+                                            <span class="value" id="cartTotal"></span>
                                         </div>
                                         <div class="price-inline">
                                             <span class="label">Shipping</span>
@@ -172,11 +126,12 @@
                                             <span class="label">Taxes</span>
                                             <span class="value">$0.00</span>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="cart-total">
                                         <div class="price-inline">
-                                            <span class="label">Total</span>
-                                            <span class="value">$49.70</span>
+                                            <span class="label">Subtotal</span>
+                                            <span style="margin-left: auto"><strong>&#36;</strong></span>
+                                            <span style="margin-left: 2px" class="value" id="cartTotal"></span>
                                         </div>
                                     </div>
                                 </div>

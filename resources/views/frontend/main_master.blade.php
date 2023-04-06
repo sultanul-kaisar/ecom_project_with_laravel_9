@@ -379,6 +379,7 @@
                 },
                 url: "/cart/data/store/"+id,
                 success:function(data){
+                    miniCart();
                     $('#closeModel').click();
                     // console.log(data)
 
@@ -415,11 +416,115 @@
                url: '/product/mini/cart',
                dataType:'json',
                success:function(response){
-                   console.log(response)
-               }
-           })
+
+                    $('span[id="cartTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+                   var miniCart = ""
+                   $.each(response.carts, function(key,value){
+                       miniCart += `<div class="single-cart-item">
+                                        <div class="cart-thumb">
+                                            <img src="/${value.options.image}" alt="Cart">
+                                            <span class="product-quantity">${value.qty}x</span>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xl-9">
+                                                <div class="cart-item-content">
+                                                    <h6 class="product-name">${value.name}</h6>
+                                                    <span class="product-price">$${value.price}</span>
+                                                    <div class="attributes-content">
+                                                        <span style="color: black"><strong>Color:</strong> ${value.options.color} </span>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="fa fa-trash"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>`
+                    });
+
+                $('#miniCart').html(miniCart);
+            }
+        })
+     }
+    miniCart();
+
+
+
+    //Remove miniCart Product
+    function miniCartRemove(rowId){
+        $.ajax({
+            type: 'GET',
+            url: '/minicart/product-remove/'+rowId,
+            dataType:'json',
+            success:function(data){
+            miniCart();
+             // Start Message
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+                      icon: 'success',
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message
+            }
+        });
+    }
+   </script>
+
+   {{--  Add Wish List Start  --}}
+
+   <script type="text/javascript">
+
+        function addToWishList(product_id){
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishlist/"+product_id,
+
+                success:function(data) {
+                   // Start Message
+                const Toast = Swal.mixin({
+                      toast: true,
+                      position: 'top-end',
+
+                      showConfirmButton: false,
+                      timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message
+                }
+            })
         }
    </script>
+
+
+   {{--  Add Wish List End  --}}
 
 </body>
 
