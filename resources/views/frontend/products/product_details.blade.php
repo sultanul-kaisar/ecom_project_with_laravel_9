@@ -6,7 +6,7 @@
 @section('content')
 
 <!-- Page Banner Section Start -->
-<div class="section">
+<div class="section" style="margin-bottom: -70px">
     <div class="container">
 
         <!-- Page Banner Content End -->
@@ -17,8 +17,8 @@
                 <li><a href="{{ route('index') }}">Home</a></li>
                 <li><a href="">{{ $product->category->category_title }}</a></li>
                 <li><a href="">{{ $product->subcategory->subcategory_title }}</a></li>
-                <li><a href="">{{ $product->subsubcategory->subsubcategory_title }}</a></li>
-                <a href="">{{ $product->product_name }}</a>
+                <li><a href="{{ route('productBySubSubcat', $product->subsubcategory->id)}}">{{ $product->subsubcategory->subsub_title }}</a></li>
+                <li><a href="">{{ $product->product_name }}</a></li>
             </ul>
         </div>
         <!-- Page Banner Content End -->
@@ -119,10 +119,10 @@
                     <div class="row">
                         <div class="col-xl-6">
                             <div class="product-color">
-                                <span class="lable" style="margin-top: 20px">Color:</span>
+                                <span class="lable" style="margin-top: 30px">Color:</span>
                                 <div class="single-select2">
                                     <div class="form-select2">
-                                        <select class="select2" id="color">
+                                        <select class="select2" id="color" required>
                                             <option selected="" disabled="">Select a Color *</option>
                                             @foreach($product_color as $color)
                                                 <option value="{{ $color }}">{{ ucwords($color) }}</option>
@@ -137,10 +137,10 @@
                         @else
                             <div class="col-xl-6">
                                 <div class="product-color">
-                                    <span class="lable" style="margin-top: 20px">Size:</span>
+                                    <span class="lable" style="margin-top: 30px">Size:</span>
                                     <div class="single-select2">
                                         <div class="form-select2">
-                                            <select class="select2" id="size">
+                                            <select class="select2" id="size" required>
                                                 <option selected="" disabled="">Select a Size *</option>
                                                 @foreach($product_size as $size)
                                                     <option value="{{ $size }}">{{ ucwords($size) }}</option>
@@ -162,6 +162,7 @@
                             {{-- <button type="button" class="add">+</button> --}}
                         </div>
                         <div class="meta-action">
+                            <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
                             <button type="submit" onclick="addToCart()" class="btn btn-dark btn-hover-primary">Add To Cart</button>
                         </div>
                         <div class="meta-action">
@@ -416,9 +417,11 @@
                                                     </div>
                                                 </div>
                                                 <ul class="product-meta">
-                                                    <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" id="{{ $product->id }}" onclick="productView(this.id)"><i class="pe-7s-search"></i></a></li>
-                                                    <li><a class="action" href="#"><i class="pe-7s-shopbag"></i></a></li>
-                                                    <li><a class="action" href="#"><i class="pe-7s-like"></i></a></li>
+                                                    <li><a class="action" href="#"><i class="pe-7s-search"></i></a></li>
+
+                                                    <li><a class="action" data-bs-toggle="modal" data-bs-target="#quickView" title="Add To Cart" id="{{ $product->id }}" value="{{ $product->id }}" onclick="productView(this.id)"><i class="pe-7s-shopbag"></i></a></li>
+
+                                                    <li><button class="action" title="Wishlist" id="{{ $product->id }}" onclick="addToWishList(this.id)"><i class="pe-7s-like"></i></button></li>
                                                 </ul>
                                             </div>
                                             <!-- Single Product End -->

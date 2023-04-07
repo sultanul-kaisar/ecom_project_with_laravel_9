@@ -51,6 +51,7 @@
     @yield('content')
 
 
+
     <!-- Footer Section Start -->
     @include('frontend.body.footer')
     <!-- Footer Section End -->
@@ -62,166 +63,6 @@
     <!--Back To End-->
 
 
-    <!-- Quick View Start -->
-    <div class="modal fade" id="quickView">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <button type="button" class="btn-close" id="closeModel" data-bs-dismiss="modal" aria-label="Close"></button>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-lg-6">
-
-                            <!-- Quick View Images Start -->
-                            <div class="quick-view-images">
-
-                                <!-- Quick Gallery Images Start -->
-                                <div class="quick-gallery-images">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-                                            <div class="swiper-slide">
-                                                <div class="single-img">
-                                                    <img src=" " alt="..." id="pthumbnail">
-                                                </div>
-                                            </div>
-                                            <div class="swiper-slide" id="images">
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Quick Gallery Images End -->
-
-                                <!-- Quick Gallery Thumbs Start -->
-                                <div class="quick-gallery-thumbs">
-                                    <div class="swiper-container">
-                                        <div class="swiper-wrapper">
-
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-2.jpg" alt="Product Thumbnail">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-3.jpg" alt="Product Thumbnail">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-4.jpg" alt="Product Thumbnail">
-                                            </div>
-                                            <div class="swiper-slide">
-                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-5.jpg" alt="Product Thumbnail">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Add Arrows -->
-                                    <div class="swiper-button-prev"><i class="pe-7s-angle-left"></i></div>
-                                    <div class="swiper-button-next"><i class="pe-7s-angle-right"></i></div>
-                                </div>
-                                <!-- Quick Gallery Thumbs End -->
-
-                            </div>
-                            <!-- Quick View Images End -->
-
-                        </div>
-                        <div class="col-lg-6">
-
-                            <!-- Quick View Description Start -->
-                            <div class="quick-view-description">
-                                <h4 class="product-name"><span id="pname"></span></h4>
-                                <div class="price">
-                                    <span class="sale-price">$<strong id="pprice"></strong></span>
-                                    <span class="old-price"><strong id="oldprice"></strong></span>
-                                </div>
-                                <div class="review-wrapper">
-                                    <div class="review-star">
-                                        <div class="star" style="width: 80%;"></div>
-                                    </div>
-                                    <p>( 1 Customer Review )</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-xl-6">
-                                        <div class="product-color">
-                                            <span class="lable" style="margin-top: 30px">Color:</span>
-                                            <div class="single-select2">
-                                                <div class="form-select2">
-                                                    <select class="select2" id="color" name="color">
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xl-6" id="sizeArea">
-                                        <div class="product-color">
-                                            <span class="lable" style="margin-top: 30px">Size:</span>
-                                            <div class="single-select2">
-                                                <div class="form-select2">
-                                                    <select class="select2" id="size" name="size">
-
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <p id="short_desc"></p>
-
-                                <div class="product-meta">
-                                    <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
-                                    <div class="col-xl-2 product-quantity d-inline-flex">
-                                        {{-- <button type="button" class="sub">-</i></button> --}}
-                                        <input style="width: 74px;" type="number" id="qty" value="1" min="1" />
-                                        {{-- <button type="button" class="add">+</button> --}}
-                                    </div>
-                                    <div class="meta-action">
-                                        <input type="hidden" id="product_id">
-                                        <button type="submit" class="btn btn-dark btn-hover-primary" onclick="addToCart()">Add To Cart</button>
-                                    </div>
-                                    <div class="meta-action">
-                                        <a class="action" href="#"><i class="pe-7s-like"></i></a>
-                                    </div>
-                                    <div class="meta-action">
-                                        <a class="action" href="#"><i class="pe-7s-shuffle"></i></a>
-                                    </div>
-                                </div>
-
-                                <div class="product-info">
-                                    <div class="single-info">
-                                        <span class="lable">Product Code:  <strong id="pcode"></strong></span>
-                                    </div>
-                                    <div class="single-info">
-                                        <span class="lable">Categories: <strong id="pcategory"></strong></span>
-                                    </div>
-                                    <div class="single-info">
-                                        <span class="lable">Brand: <strong id="pbrand"></strong></span>
-                                    </div>
-                                    <div class="single-info">
-                                        <span class="lable">Stock:
-                                            <span style="background: green; color:white" id="avilable"></span>
-                                            <span style="background: yellow; color:red" id="stockout"></span>
-                                        </span>
-                                    </div>
-                                    <div class="single-info">
-                                        <span class="lable">Share:</span>
-                                        <ul class="social">
-                                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Quick View Description End -->
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Quick View End -->
 
 
 
@@ -283,6 +124,167 @@
     </script>
 
 
+    <!-- Cart modal Start -->
+    <div class="modal fade" id="quickView">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <button type="button" class="btn-close" id="closeModel" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <!-- Quick View Images Start -->
+                            <div class="quick-view-images">
+
+                                <!-- Quick Gallery Images Start -->
+                                <div class="quick-gallery-images">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+                                            <div class="swiper-slide">
+                                                <div class="single-img">
+                                                    <img src=" " alt="..." id="pthumbnail">
+                                                </div>
+                                            </div>
+                                            <div class="swiper-slide" id="images">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Quick Gallery Images End -->
+
+                                <!-- Quick Gallery Thumbs Start -->
+                                <div class="quick-gallery-thumbs">
+                                    <div class="swiper-container">
+                                        <div class="swiper-wrapper">
+
+                                            <div class="swiper-slide">
+                                                <img src=" " alt="..." id="pthumbnail">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-3.jpg" alt="Product Thumbnail">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-4.jpg" alt="Product Thumbnail">
+                                            </div>
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('frontend') }}/assets/images/product-details/product-details-5.jpg" alt="Product Thumbnail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Add Arrows -->
+                                    <div class="swiper-button-prev"><i class="pe-7s-angle-left"></i></div>
+                                    <div class="swiper-button-next"><i class="pe-7s-angle-right"></i></div>
+                                </div>
+                                <!-- Quick Gallery Thumbs End -->
+
+                            </div>
+                            <!-- Quick View Images End -->
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <!-- Quick View Description Start -->
+                            <div class="quick-view-description">
+                                <h4 class="product-name"><span id="pname"></span></h4>
+                                <div class="price">
+                                    <span class="sale-price">$<strong id="pprice"></strong></span>
+                                    <span class="old-price"><strong id="oldprice"></strong></span>
+                                </div>
+                                <div class="review-wrapper">
+                                    <div class="review-star">
+                                        <div class="star" style="width: 80%;"></div>
+                                    </div>
+                                    <p>( 1 Customer Review )</p>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6">
+                                        <div class="product-color">
+                                            <span class="lable" style="margin-top: 20px">Color:</span>
+                                            <div class="single-select2">
+                                                <div class="form-select2">
+                                                    <select class="select2" id="color" name="color">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6" id="sizeArea">
+                                        <div class="product-color">
+                                            <span class="lable" style="margin-top: 20px">Size:</span>
+                                            <div class="single-select2">
+                                                <div class="form-select2">
+                                                    <select class="select2" id="size" name="size">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p id="short_desc"></p>
+
+                                <div class="product-meta">
+                                    {{-- <input type="hidden" id="product_id" value="{{ $product->id }}" min="1"> --}}
+                                    <div class="col-xl-2 product-quantity d-inline-flex">
+                                        {{-- <button type="button" class="sub">-</i></button> --}}
+                                        <input style="width: 74px;" type="number" id="qty" value="1" min="1" />
+                                        {{-- <button type="button" class="add">+</button> --}}
+                                    </div>
+                                    <div class="meta-action">
+                                        <input type="hidden" id="product_id">
+                                        <button type="submit" class="btn btn-dark btn-hover-primary" onclick="addToCart()">Add To Cart</button>
+                                    </div>
+                                    <div class="meta-action">
+                                        <a class="action" href="#"><i class="pe-7s-like"></i></a>
+                                    </div>
+                                    <div class="meta-action">
+                                        <a class="action" href="#"><i class="pe-7s-shuffle"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="product-info">
+                                    <div class="single-info">
+                                        <span class="lable">Product Code:  <strong id="pcode"></strong></span>
+                                    </div>
+                                    <div class="single-info">
+                                        <span class="lable">Categories: <strong id="pcategory"></strong></span>
+                                    </div>
+                                    <div class="single-info">
+                                        <span class="lable">Brand: <strong id="pbrand"></strong></span>
+                                    </div>
+                                    <div class="single-info">
+                                        <span class="lable">Stock:
+                                            <span style="background: green; color:white" id="avilable"></span>
+                                            <span style="background: yellow; color:red" id="stockout"></span>
+                                        </span>
+                                    </div>
+                                    <div class="single-info">
+                                        <span class="lable">Share:</span>
+                                        <ul class="social">
+                                            <li><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Quick View Description End -->
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cart Modal End -->
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers:{
@@ -343,7 +345,7 @@
                         $('select[name="color"]').append('<option value=" '+value+' ">'+value+' </option>')
                     }) // end color
 
-                     // Size
+                    // Size
                     $('select[name="size"]').empty();
                     $.each(data.size,function(key,value){
                         $('select[name="size"]').append('<option value=" '+value+' ">'+value+' </option>')
@@ -408,7 +410,50 @@
     </script>
 
 
-    //Minicart
+    {{--  Add Wish List Start  --}}
+
+    <script type="text/javascript">
+
+        function addToWishList(product_id){
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishlist/"+product_id,
+
+                success:function(data) {
+                // Start Message
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+
+                    showConfirmButton: false,
+                    timer: 3000
+                    })
+                if ($.isEmptyObject(data.error)) {
+                    Toast.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: data.success
+                    })
+                }else{
+                    Toast.fire({
+                        type: 'error',
+                        icon: 'error',
+                        title: data.error
+                    })
+                }
+                // End Message
+                }
+            })
+        }
+    </script>
+
+
+    {{--  Add Wish List End  --}}
+
+
+
+    {{-- Start Minicart --}}
     <script type="text/javascript">
         function miniCart(){
            $.ajax({
@@ -485,46 +530,7 @@
     }
    </script>
 
-   {{--  Add Wish List Start  --}}
 
-   <script type="text/javascript">
-
-        function addToWishList(product_id){
-            $.ajax({
-                type: "POST",
-                dataType: 'json',
-                url: "/add-to-wishlist/"+product_id,
-
-                success:function(data) {
-                   // Start Message
-                const Toast = Swal.mixin({
-                      toast: true,
-                      position: 'top-end',
-
-                      showConfirmButton: false,
-                      timer: 3000
-                    })
-                if ($.isEmptyObject(data.error)) {
-                    Toast.fire({
-                        type: 'success',
-                        icon: 'success',
-                        title: data.success
-                    })
-                }else{
-                    Toast.fire({
-                        type: 'error',
-                        icon: 'error',
-                        title: data.error
-                    })
-                }
-                // End Message
-                }
-            })
-        }
-   </script>
-
-
-   {{--  Add Wish List End  --}}
 
 </body>
 
