@@ -53,9 +53,32 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Horizontal Outline Primary">
                                         <a type="button" href="{{route('edit.brand', $brand->id)}}" class="btn btn-outline-primary"><i class="fa fa-pen me-1"></i>Edit</a>
-                                        <a type="button" id="delete" href="{{route('delete.brand', $brand->id)}}" class="btn btn-outline-danger"><i class="fa fa-trash me-1"></i>Delete</a>
+
+                                        <a class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal__{{ $brand->id }}">Delete</a>
+
+                                        {{-- <a type="button" id="delete" href="{{route('delete.brand', $brand->id)}}" class="btn btn-outline-danger"><i class="fa fa-trash me-1"></i>Delete</a> --}}
                                         </a>
                                     </div>
+                                    <div class="modal fade" id="exampleModal__{{ $brand->id }}" tabindex="-1" aria-labelledby="exampleModal__{{ $brand->id }}" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body text-center" >
+                                                <span class=""><svg xmlns="http://www.w3.org/2000/svg" height="60" width="60" viewBox="0 0 24 24"><path fill="#f07f8f" d="M20.05713,22H3.94287A3.02288,3.02288,0,0,1,1.3252,17.46631L9.38232,3.51123a3.02272,3.02272,0,0,1,5.23536,0L22.6748,17.46631A3.02288,3.02288,0,0,1,20.05713,22Z"/><circle cx="12" cy="17" r="1" fill="#e62a45"/><path fill="#e62a45" d="M12,14a1,1,0,0,1-1-1V9a1,1,0,0,1,2,0v4A1,1,0,0,1,12,14Z"/></svg></span>
+                                                <h4 class="h4 mb-0 mt-3" style="color: red">Warning</h4>
+                                                <p class="card-text">Are you sure you want to delete data?</p>
+                                                <strong class="card-text" style="color: red">Once deleted, you will not be able to recover this data!</strong>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <a type="button" href="{{ route('delete.brand', $brand->id) }}" class="btn btn-danger">Delete</a>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                 </td>
                             </tr>
                         @endforeach

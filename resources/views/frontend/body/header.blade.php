@@ -1,6 +1,39 @@
-    <!-- Header Start  -->
+
+  <!-- Header Start  -->
     <div class="header-area header-white header-sticky d-none d-lg-block">
-        <div class="container position-relative">
+
+        <nav class="autohide navbar navbar-expand-lg navbar-primary bg-transparent">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navbar</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        usd
+                      </a>
+                      <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a href="javascript:void(0)"><i class="fa fa-inr"></i> inr</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-usd"></i> usd</a></li>
+                        <li><a href="javascript:void(0)"><i class="fa fa-eur"></i> eur</a></li>
+                      </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+        </nav>
+        <div class="container position-relative" style="margin-top: 25px">
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
@@ -90,9 +123,9 @@
                                 </ul>
                             @endauth
                         </div>
-                        @auth
+                        {{-- @auth --}}
                             <a class="action" href="{{ route('wishlist') }}"><i class="pe-7s-like"></i></a>
-                        @endauth
+                        {{-- @endauth --}}
                         <div class="dropdown">
                             <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="pe-7s-shopbag"></i>

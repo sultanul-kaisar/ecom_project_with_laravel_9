@@ -38,6 +38,59 @@
         <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/vendor/plugins.min.css">
         <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/style.min.css">
         -->
+
+        <style type="text/css">
+            .autohide{
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1030;
+            }
+            .scrolled-down{
+                transform:translateY(-100%); transition: all 0.3s ease-in-out;
+            }
+            .scrolled-up{
+                transform:translateY(0); transition: all 0.3s ease-in-out;
+            }
+
+        </style>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", function(){
+
+                el_autohide = document.querySelector('.autohide');
+
+                // add padding-top to bady (if necessary)
+                navbar_height = document.querySelector('.navbar').offsetHeight;
+                document.body.style.paddingTop = navbar_height + 'px';
+
+                if(el_autohide){
+
+                    var last_scroll_top = 0;
+                    window.addEventListener('scroll', function() {
+                           let scroll_top = window.scrollY;
+                       if(scroll_top < last_scroll_top) {
+                            el_autohide.classList.remove('scrolled-down');
+                            el_autohide.classList.add('scrolled-up');
+                        }
+                        else {
+                            el_autohide.classList.remove('scrolled-up');
+                            el_autohide.classList.add('scrolled-down');
+                        }
+                        last_scroll_top = scroll_top;
+
+                    });
+                    // window.addEventListener
+
+                }
+                // if
+
+            });
+            // DOMContentLoaded  end
+
+
+        </script>
     </head>
 
     <body>
@@ -418,7 +471,7 @@
                 $.ajax({
                     type: "POST",
                     dataType: 'json',
-                    url: "/user/add-to-wishlist/"+product_id,
+                    url: "/add-to-wishlist/"+product_id,
 
                     success:function(data) {
                     // Start Message
@@ -538,7 +591,7 @@
         function wishlist(){
             $.ajax({
                 type: 'GET',
-                url: '/user/get-wishlist-product',
+                url: '/get-wishlist-product',
                 dataType:'json',
                 success:function(response){
 
@@ -581,7 +634,7 @@
         function wishlistRemove(id){
             $.ajax({
                 type: 'GET',
-                url: '/user/wishlist-remove/'+id,
+                url: '/wishlist-remove/'+id,
                 dataType:'json',
                 success:function(data){
                 wishlist();

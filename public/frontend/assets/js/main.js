@@ -5,7 +5,7 @@
     /*--
 		Header Sticky
     -----------------------------------*/
-    $(window).on('scroll', function(event) {    
+    $(window).on('scroll', function(event) {
         var scroll = $(window).scrollTop();
         if (scroll <= 1) {
             $(".header-sticky").removeClass("sticky");
@@ -19,13 +19,13 @@
 		Menu Active
     -----------------------------------*/
     $(function () {
-    var url = window.location.pathname; 
-    var activePage = url.substring(url.lastIndexOf('/') + 1); 
-        $('.nav-menu li a').each(function () { 
-            var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1); 
-    
-            if (activePage == linkPage) { 
-                $(this).closest("li").addClass("active"); 
+    var url = window.location.pathname;
+    var activePage = url.substring(url.lastIndexOf('/') + 1);
+        $('.nav-menu li a').each(function () {
+            var linkPage = this.href.substring(this.href.lastIndexOf('/') + 1);
+
+            if (activePage == linkPage) {
+                $(this).closest("li").addClass("active");
             }
         });
     })
@@ -49,17 +49,17 @@
     /*--
         Off Canvas Menu
     -----------------------------------*/
-	
+
   	$('.mobile-menu-open').on('click', function(){
         $('.off-canvas-box').addClass('open')
         $('.menu-overlay').addClass('open')
     });
-    
+
     $('.menu-close').on('click', function(){
         $('.off-canvas-box').removeClass('open')
         $('.menu-overlay').removeClass('open')
     });
-    
+
     $('.menu-overlay').on('click', function(){
         $('.off-canvas-box').removeClass('open')
         $('.menu-overlay').removeClass('open')
@@ -114,7 +114,7 @@
         // autoplay: {
         //     delay: 8000,
         // },
-    }); 
+    });
 
 
     /*--
@@ -179,7 +179,7 @@
     var product = new Swiper('.products-banner-active .swiper-container', {
         slidesPerView: 4,
         spaceBetween: 0,
-        loop: true,        
+        loop: true,
         breakpoints: {
             0: {
                 slidesPerView: 1,
@@ -238,7 +238,7 @@
         // autoplay: {
         //     delay: 8000,
         // },
-    }); 
+    });
 
 
     /*--
@@ -251,7 +251,7 @@
         navigation: {
             nextEl: '.gallery-active .swiper-button-next',
             prevEl: '.gallery-active .swiper-button-prev',
-        },        
+        },
     });
 
 
@@ -271,17 +271,17 @@
           minsLeft = Math.floor((e_hrsLeft - hrsLeft) * 60),
           e_secsLeft = (e_minsLeft - minsLeft) * 60,
           secsLeft = Math.floor((e_minsLeft - minsLeft) * 60);
-    
+
         var yearsLeft = 0;
         var monthsLeft = 0
         var weeksLeft = 0;
-    
+
         if ($format != 'short') {
           if (daysLeft > 365) {
             yearsLeft = Math.floor(daysLeft / 365);
             daysLeft = daysLeft % 365;
           }
-    
+
           if (daysLeft > 30) {
             monthsLeft = Math.floor(daysLeft / 30);
             daysLeft = daysLeft % 30;
@@ -291,7 +291,7 @@
             daysLeft = daysLeft % 7;
           }
         }
-    
+
         var yearsLeft = yearsLeft < 10 ? "0" + yearsLeft : yearsLeft,
           monthsLeft = monthsLeft < 10 ? "0" + monthsLeft : monthsLeft,
           weeksLeft = weeksLeft < 10 ? "0" + weeksLeft : weeksLeft,
@@ -306,7 +306,7 @@
           hourText = hrsLeft > 1 ? 'Hours' : 'hr',
           minsText = minsLeft > 1 ? 'Mints' : 'min',
           secText = secsLeft > 1 ? 'Secs' : 'sec';
-    
+
         var $markup = {
           wrapper: $this.find('.countdown__item'),
           year: $this.find('.yearsLeft'),
@@ -324,7 +324,7 @@
           minTxt: $this.find('.minsText'),
           secTxt: $this.find('.secsText')
         }
-    
+
         var elNumber = $markup.wrapper.length;
         $this.addClass('item-' + elNumber);
         $($markup.year).html(yearsLeft);
@@ -342,7 +342,7 @@
         $($markup.second).html(secsLeft);
         $($markup.secTxt).html(secText);
     }
-    
+
     $('.countdown').each(function () {
         var $this = $(this);
         var $endDate = $(this).data('countdown');
@@ -376,9 +376,9 @@
 
 
     /*--
-        Nice Select Activation 
+        Nice Select Activation
     -----------------------------------*/
-    $('.nice_select').niceSelect();    
+    $('.nice_select').niceSelect();
 
 
     /*--
@@ -390,7 +390,7 @@
 
 
     /*--
-        ionRangeSlider Activation 
+        ionRangeSlider Activation
     -----------------------------------*/
     $("#price-range").ionRangeSlider({
         type: "double",
@@ -422,7 +422,7 @@
           nextEl: '.details-gallery-thumbs .swiper-button-next',
           prevEl: '.details-gallery-thumbs .swiper-button-prev',
         },
-        breakpoints: {          
+        breakpoints: {
             0: {
                 spaceBetween: 10,
                 slidesPerView: 3,
@@ -433,7 +433,7 @@
         }
       });
       var galleryTop = new Swiper('.details-gallery-images .swiper-container', {
-        spaceBetween: 10,     
+        spaceBetween: 10,
         thumbs: {
           swiper: galleryThumbs
         }
@@ -453,7 +453,7 @@
           nextEl: '.quick-gallery-thumbs .swiper-button-next',
           prevEl: '.quick-gallery-thumbs .swiper-button-prev',
         },
-        breakpoints: {          
+        breakpoints: {
             0: {
                 spaceBetween: 10,
                 slidesPerView: 3,
@@ -464,7 +464,7 @@
         }
       });
       var galleryTop = new Swiper('.quick-gallery-images .swiper-container', {
-        spaceBetween: 10,     
+        spaceBetween: 10,
         thumbs: {
           swiper: galleryThumbs
         }
@@ -511,7 +511,7 @@
 		})
 	})
 
-	
+
 	$('#rating li').on('click', function(e) {
 		var onStar = parseInt($(this).data('value'), 10);
 		var siblings = $(this).parent().children('li.star');
@@ -526,11 +526,11 @@
 				child.classList.add('fa-star-o')
 			}
 		})
-	}) 
+	})
 
 
     /*--
-        Odometer Activation 
+        Odometer Activation
     -----------------------------------*/
     if( $('.odometer').length ){
 
@@ -553,7 +553,7 @@
 				$('.odometer').each(function(){
 					$(this).html($(this).data('count-to'));
 				});
-			}	
+			}
 		});
     };
 
@@ -568,8 +568,8 @@
           $('.checkout-account').slideUp();
         }
     });
-      
-  
+
+
     /*--
         Checkout Shipping Active
     -----------------------------------*/
@@ -580,8 +580,8 @@
           $('.checkout-shipping').slideUp();
         }
     });
-      
-  
+
+
     /*--
         Checkout Payment Active
     -----------------------------------*/
@@ -593,10 +593,10 @@
         $('.payment-details').slideUp(500);
         $(this).siblings('.payment-details').slideToggle(500);
     });
-  
 
-    
 
-    
+
+
+
 })(jQuery);
 

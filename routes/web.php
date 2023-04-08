@@ -61,7 +61,7 @@ Route::controller(CartController::class)->group(function (){
 });
 
 
-Route::group(['prefix'=>'user', 'middleware' => ['user', 'auth'], 'namespace' => 'user' ], function(){
+Route::middleware(['auth:web'])->group(function (){
     Route::controller(WishlistController::class)->group(function (){
         Route::post('/add-to-wishlist/{id}', 'AddToWishList');
 
