@@ -90,8 +90,9 @@
                                 </ul>
                             @endauth
                         </div>
-                        <a class="action" href="wishlist.html"><i class="pe-7s-like"></i></a>
-
+                        @auth
+                            <a class="action" href="{{ route('wishlist') }}"><i class="pe-7s-like"></i></a>
+                        @endauth
                         <div class="dropdown">
                             <a class="action" href="#" role="button" data-bs-toggle="dropdown">
                                 <i class="pe-7s-shopbag"></i>
