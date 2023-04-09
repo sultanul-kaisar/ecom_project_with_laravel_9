@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\UserProfileController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\WishlistController;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,10 @@ Route::middleware(['auth:web'])->group(function (){
         Route::get('/wishlist', 'ViewWishList')->name('wishlist');
         Route::get('/get-wishlist-product', 'GetWishListProduct');
         Route::get('/wishlist-remove/{id}', 'RemoveWishListProduct');
+    });
+
+    Route::controller(CartPageController::class)->group(function(){
+        Route::get('/mycart', 'MyCart')->name('mycart');
     });
 });
 

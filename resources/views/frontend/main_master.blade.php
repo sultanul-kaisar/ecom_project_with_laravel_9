@@ -585,8 +585,6 @@
 
 
     {{-- Load Wish-list data --}}
-
-        {{-- Start Minicart --}}
     <script type="text/javascript">
         function wishlist(){
             $.ajax({
@@ -662,11 +660,101 @@
             });
         }
 
-        </script>
+    </script>
 
-        {{-- End Wish-list data --}}
+    {{-- End Wish-list data --}}
 
 
-    </body>
+    {{-- Load Cart-list data --}}
+    <script type="text/javascript">
+        function mycart(){
+            $.ajax({
+                type: 'GET',
+                url: '/get-mycart-product',
+                dataType:'json',
+                success:function(response){
+
+                    var rows = ""
+                    $.each(response, function(key,value){
+                        rows += `<tr>
+                            <td class="product-thumb">
+                                <img src="/${value.product.product_thumbnail}" alt="">
+                            </td>
+                            <td class="product-info">
+                                <h6 class="name"><a href="product-details.html">${value.product.product_name}</a></h6>
+                                <div class="product-prices">
+                                    ${value.product.discount_price == null
+                                            ? `<span class="sale-price">$${value.product.selling_price}</span>`
+                                            : `<span class="sale-price">$${value.product.discount_price}</span>
+                                                <span class="old-price">$${value.product.selling_price}</span>`
+                                        }
+                                </div>
+                                <div class="product-size-color">
+                                    <p>Size <span>S</span></p>
+                                    <p>Color <span>White</span></p>
+                                </div>
+                            </td>
+                            <td class="quantity">
+                                <div class="product-quantity d-inline-flex">
+                                    <button type="button" class="sub">-</i></button>
+                                    <input type="text" value="1" />
+                                    <button type="button" class="add">+</button>
+                                </div>
+                            </td>
+                            <td class="product-total-price">
+                                <span class="price">$28.72</span>
+                            </td>
+                            <td class="product-action">
+                                <button type="submit" class="remove" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="pe-7s-trash"></i></button>
+                            </td>
+                        </tr>`
+                    });
+
+
+                    $('#mycart').html(rows);
+                }
+            })
+        }
+        mycart();
+
+
+            //Remove wishlist Product
+        function wishlistRemove(id){
+            $.ajax({
+                type: 'GET',
+                url: '/wishlist-remove/'+id,
+                dataType:'json',
+                success:function(data){
+                wishlist();
+                // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                        })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
+
+    </script>
+
+        {{-- End Crt-list data --}}
+
+
+</body>
 
 </html>

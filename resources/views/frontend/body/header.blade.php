@@ -9,12 +9,12 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                  <ul class="navbar-nav">
+                  <ul class="navbar-nav" style="margin-left: auto">
                     <li class="nav-item">
                       <a class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Features</a>
+                      <a class="nav-link" href="{{ route('mycart') }}"><i class="pe-7s-cart"> MyCart</i></a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="#">Pricing</a>
@@ -33,7 +33,7 @@
                 </div>
               </div>
         </nav>
-        <div class="container position-relative" style="margin-top: 25px">
+        <div class="container position-relative" style="margin-top: 10px">
             <div class="row align-items-center">
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
@@ -119,7 +119,7 @@
                                 <ul class="dropdown-menu dropdown-profile">
                                     {{-- <li><a href="checkout.html">Checkout</a></li> --}}
                                     <li><a href="{{ route('login') }}">Sign In</a></li>
-                                    <li><a href="{{ route('register') }}">Sign Up</a></li>
+                                    {{-- <li><a href="{{ route('register') }}">Sign Up</a></li> --}}
                                 </ul>
                             @endauth
                         </div>
@@ -228,11 +228,11 @@
                                     <ul class="dropdown-menu dropdown-profile">
                                         {{-- <li><a href="checkout.html">Checkout</a></li> --}}
                                         <li><a href="{{ route('login') }}">Sign In</a></li>
-                                        <li><a href="{{ route('register') }}">Sign Up</a></li>
+                                        {{-- <li><a href="{{ route('register') }}">Sign Up</a></li> --}}
                                     </ul>
                                 @endauth
                             </div>
-                            <a class="action" href="cart.html">
+                            <a class="action" href="{{ route('mycart') }}">
                                 <i class="pe-7s-shopbag"></i>
                                 <span class="number">3</span>
                             </a>
