@@ -670,24 +670,21 @@
         function mycart(){
             $.ajax({
                 type: 'GET',
-                url: '/get-mycart-product',
+                url: '/get-cart-product',
                 dataType:'json',
                 success:function(response){
 
                     var rows = ""
-                    $.each(response, function(key,value){
+                    $.each(response.carts, function(key,value){
                         rows += `<tr>
                             <td class="product-thumb">
-                                <img src="/${value.product.product_thumbnail}" alt="">
+                                <img src="/${value.options.image}" alt="">
                             </td>
                             <td class="product-info">
-                                <h6 class="name"><a href="product-details.html">${value.product.product_name}</a></h6>
+                                <h6 class="name"><a href="product-details.html">${value.name}</a></h6>
                                 <div class="product-prices">
-                                    ${value.product.discount_price == null
-                                            ? `<span class="sale-price">$${value.product.selling_price}</span>`
-                                            : `<span class="sale-price">$${value.product.discount_price}</span>
-                                                <span class="old-price">$${value.product.selling_price}</span>`
-                                        }
+                                    <span class="sale-price"> $${value.price} </span>
+
                                 </div>
                                 <div class="product-size-color">
                                     <p>Size <span>S</span></p>
