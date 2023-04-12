@@ -687,22 +687,24 @@
 
                                 </div>
                                 <div class="product-size-color">
-                                    <p>Size <span>S</span></p>
-                                    <p>Color <span>White</span></p>
+                                    ${value.options.size == null
+                                    ? `<p>....<p>`
+                                    : `<p>Size <span>${value.options.size}</span></p>`}
+                                    <p>Color <span>${value.options.color}</span></p>
                                 </div>
                             </td>
                             <td class="quantity">
                                 <div class="product-quantity d-inline-flex">
-                                    <button type="button" class="sub">-</i></button>
-                                    <input type="text" value="1" />
-                                    <button type="button" class="add">+</button>
+                                    <button type="submit" class="sub">-</i></button>
+                                    <input type="text" value="${value.qty}" min="1" max="100" disabled="" />
+                                    <button type="submit" class="add">+</button>
                                 </div>
                             </td>
                             <td class="product-total-price">
-                                <span class="price">$28.72</span>
+                                <span class="price">$${value.subtotal}</span>
                             </td>
                             <td class="product-action">
-                                <button type="submit" class="remove" id="${value.id}" onclick="wishlistRemove(this.id)"><i class="pe-7s-trash"></i></button>
+                                <button type="submit" class="remove" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="pe-7s-trash"></i></button>
                             </td>
                         </tr>`
                     });
@@ -715,14 +717,15 @@
         mycart();
 
 
-            //Remove wishlist Product
-        function wishlistRemove(id){
+            //Remove cart Product
+        function cartRemove(id){
             $.ajax({
                 type: 'GET',
-                url: '/wishlist-remove/'+id,
+                url: '/cart-remove/'+id,
                 dataType:'json',
                 success:function(data){
-                wishlist();
+                    mycart();
+                    miniCart();
                 // Start Message
                     const Toast = Swal.mixin({
                         toast: true,

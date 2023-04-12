@@ -74,6 +74,7 @@ Route::middleware(['auth:web'])->group(function (){
     Route::controller(CartPageController::class)->group(function(){
         Route::get('/mycart', 'MyCart')->name('mycart');
         Route::get('/get-cart-product', 'GetCartProduct');
+        Route::get('/cart-remove/{id}', 'RemoveCartProduct');
     });
 });
 
