@@ -581,6 +581,9 @@
                 }
             });
         }
+
+
+
     </script>
 
 
@@ -695,9 +698,9 @@
                             </td>
                             <td class="quantity">
                                 <div class="product-quantity d-inline-flex">
-                                    <button type="submit" class="sub">-</i></button>
+                                    <button type="submit" class="sub" id="${value.rowId}" onclick="cartDecrement(this.id)">-</i></button>
                                     <input type="text" value="${value.qty}" min="1" max="100" disabled="" />
-                                    <button type="submit" class="add">+</button>
+                                    <button type="submit" class="add" id="${value.rowId}" onclick="cartIncrement(this.id)" >+</button>
                                 </div>
                             </td>
                             <td class="product-total-price">
@@ -749,6 +752,25 @@
                 }
             });
         }
+
+
+        //Product Increment
+        function cartIncrement(rowId){
+        $.ajax({
+            type:'GET',
+            url: "/cart-increment/"+rowId,
+            dataType:'json',
+            success:function(data){
+                cart();
+                miniCart();
+            }
+        });
+    }
+        //End Product Increment
+
+        //Product Decrement
+
+        //End Product Decrement
 
     </script>
 

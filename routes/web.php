@@ -71,11 +71,13 @@ Route::middleware(['auth:web'])->group(function (){
         Route::get('/wishlist-remove/{id}', 'RemoveWishListProduct');
     });
 
-    Route::controller(CartPageController::class)->group(function(){
-        Route::get('/mycart', 'MyCart')->name('mycart');
-        Route::get('/get-cart-product', 'GetCartProduct');
-        Route::get('/cart-remove/{id}', 'RemoveCartProduct');
-    });
+
+});
+Route::controller(CartPageController::class)->group(function(){
+    Route::get('/mycart', 'MyCart')->name('mycart');
+    Route::get('/get-cart-product', 'GetCartProduct');
+    Route::get('/cart-remove/{id}', 'RemoveCartProduct');
+    Route::get('/cart-increment/{rowId}', 'CartIncrement');
 });
 
 
