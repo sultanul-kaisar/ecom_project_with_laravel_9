@@ -128,11 +128,11 @@
                         <span class="nav-main-link-name">Coupons</span>
                     </a>
                     <ul class="nav-main-submenu">
-                        {{-- <li class="nav-main-item">
+                        <li class="nav-main-item">
                             <a class="nav-main-link {{ ($route == 'add.coupon')? 'active':'' }}" href="{{ route('add.coupon') }}">
                                 <span class="nav-main-link-name">Add Coupon</span>
                             </a>
-                        </li> --}}
+                        </li>
 
                         <li class="nav-main-item">
                             <a class="nav-main-link {{ ($route == 'manage.coupon')? 'active':'' }}" href="{{ route('manage.coupon') }}">
