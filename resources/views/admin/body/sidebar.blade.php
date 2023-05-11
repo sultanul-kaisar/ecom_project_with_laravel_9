@@ -124,13 +124,33 @@
 
                 <li class="nav-main-item {{ ($prefix == '/coupon')? 'open': '' }} ">
                     <a class="nav-main-link nav-main-link-submenu " data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
-                        <i class="nav-main-link-icon fa fa-bag-shopping"></i>
+                        <i class="nav-main-link-icon fa fa-gift"></i>
                         <span class="nav-main-link-name">Coupons</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
                             <a class="nav-main-link {{ ($route == 'add.coupon')? 'active':'' }}" href="{{ route('add.coupon') }}">
                                 <span class="nav-main-link-name">Add Coupon</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{ ($route == 'manage.coupon')? 'active':'' }}" href="{{ route('manage.coupon') }}">
+                                <span class="nav-main-link-name">Manage Coupons</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-main-item {{ ($prefix == '/shipping')? 'open': '' }} ">
+                    <a class="nav-main-link nav-main-link-submenu " data-toggle="submenu" aria-haspopup="true" aria-expanded="false" href="#">
+                        <i class="nav-main-link-icon fa fa-map"></i>
+                        <span class="nav-main-link-name">Shipping Area</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link {{ ($route == 'manage.country')? 'active':'' }}" href="{{ route('manage.country') }}">
+                                <span class="nav-main-link-name">Shipping Country</span>
                             </a>
                         </li>
 
