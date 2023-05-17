@@ -155,8 +155,8 @@
                         </li>
 
                         <li class="nav-main-item">
-                            <a class="nav-main-link {{ ($route == 'manage.coupon')? 'active':'' }}" href="{{ route('manage.coupon') }}">
-                                <span class="nav-main-link-name">Manage Coupons</span>
+                            <a class="nav-main-link {{ ($route == 'manage.state')? 'active':'' }}" href="{{ route('manage.state') }}">
+                                <span class="nav-main-link-name">Manage State</span>
                             </a>
                         </li>
                     </ul>

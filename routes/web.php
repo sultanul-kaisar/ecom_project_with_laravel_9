@@ -236,12 +236,23 @@ Route::middleware(['auth:admin'])->group(function (){
             Route::get('/country/view', 'ViewCountry')->name('manage.country');
 
             Route::get('/country/add', 'AddCountry')->name('add.country');
-            Route::post('/country/store', 'CountryStore')->name('store.country');
+            Route::post('/country/store', 'StoreCountry')->name('store.country');
 
             Route::get('/country/edit/{id}', 'EditCountry')->name('edit.country');
             Route::post('/country/update/{id}', 'UpdateCountry')->name('update.country');
 
             Route::get('/country/delete/{id}', 'DeleteCountry')->name('delete.country');
+
+
+            Route::get('/state/view', 'ViewState')->name('manage.state');
+
+            Route::get('/state/add', 'AddState')->name('add.state');
+            Route::post('/state/store', 'StoreState')->name('store.state');
+
+            Route::get('/state/edit/{id}', 'EditState')->name('edit.state');
+            Route::post('/state/update/{id}', 'UpdateState')->name('update.state');
+
+            Route::get('/state/delete/{id}', 'DeleteState')->name('delete.state');
 
         });
     });
