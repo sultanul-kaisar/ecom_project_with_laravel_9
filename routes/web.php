@@ -81,6 +81,8 @@ Route::controller(CartPageController::class)->group(function(){
     Route::get('/cart-remove/{id}', 'RemoveCartProduct');
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
+
+    Route::post('/coupon-apply', 'CouponApply');
 });
 
 

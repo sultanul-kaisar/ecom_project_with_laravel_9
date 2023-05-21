@@ -59,7 +59,7 @@
         <div class="row">
             <div class="col-lg-4">
                 <!-- Cart Shipping Start -->
-                <div class="cart-shipping">
+                {{-- <div class="cart-shipping">
                     <div class="cart-title">
                         <h4 class="title">Calculate Shipping</h4>
                         <p>Estimate your shipping fee *</p>
@@ -160,7 +160,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
                 <!-- Cart Shipping End -->
             </div>
             <div class="col-lg-4">
@@ -173,10 +173,10 @@
                     <div class="cart-form">
                         <form action="#">
                             <div class="single-form">
-                                <input class="form-control" type="text" placeholder="Enter your coupon code..">
+                                <input class="form-control" type="text" id="coupon_name" placeholder="Enter your coupon code..">
                             </div>
                             <div class="single-form">
-                                <button class="btn btn-dark btn-hover-primary">Apply Coupon</button>
+                                <button class="btn btn-dark btn-hover-primary" onclick="applyCoupon()">Apply Coupon</button>
                             </div>
                         </form>
                     </div>

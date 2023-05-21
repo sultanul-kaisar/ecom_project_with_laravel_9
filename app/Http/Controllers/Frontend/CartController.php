@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -65,5 +66,17 @@ class CartController extends Controller
     public function RemoveMiniCart($rowId){
     	Cart::remove($rowId);
     	return response()->json(['success' => 'Product Remove from Cart']);
+    }//End Method
+
+
+
+    public function CouponApply(Request $request)
+    {
+        $coupon = Coupon::where('coupon_name', $request->coupon_name)->first();
+        if ($coupon) {
+            return 'ok';
+        } else {
+            return response()->json(['error' => 'Invalid Coupon']);
+        }
     }//End Method
 }
