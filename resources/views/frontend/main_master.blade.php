@@ -788,44 +788,65 @@
 
     </script>
 
-        {{-- End Crt-list data --}}
+    {{-- End Crt-list data --}}
 
     {{-- Apply Coupon Start --}}
     <script type="text/javascript">
         function applyCoupon(){
-            var coupon_name = $('#coupon_name').val();
-            $.ajax({
-                type: 'POST',
-                dataType: 'json',
-                data:{coupon_name:coupon_name},
-                url: "{{ url('/coupon-apply') }}",
-                success:function(data){
-                    // Start Message
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        icon: 'success',
-                        showConfirmButton: false,
-                        timer: 3000
-                        })
-                    if ($.isEmptyObject(data.error)) {
-                        Toast.fire({
-                            type: 'success',
-                            title: data.success
-                        })
-                    }else{
-                        Toast.fire({
-                            type: 'error',
-                            title: data.error
-                        })
-                    }
-                    // End Message
-                }
-            })
+          var coupon_name = $('#coupon_name').val();
+          $.ajax({
+              type: 'POST',
+              dataType: 'json',
+              data: {coupon_name:coupon_name},
+              url: "{{ url('/coupon-apply') }}",
+              success:function(data){
+
+                   // Start Message
+                      const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+
+                            showConfirmButton: false,
+                            timer: 3000
+                          })
+                      if ($.isEmptyObject(data.error)) {
+                          Toast.fire({
+                              type: 'success',
+                              icon: 'success',
+                              title: data.success
+                          })
+
+                      }else{
+                          Toast.fire({
+                              type: 'error',
+                              icon: 'error',
+                              title: data.error
+                          })
+
+                      }
+
+                      // End Message
+
+              }
+
+          })
         }
 
 
-    </script>
+        function couponCalculation(){
+          $.ajax({
+              type: 'GET',
+              url: "{{ url('/coupon-calculation') }}",
+              dataType: 'json',
+              success:function(data){
+
+              }
+
+          })
+        }
+
+
+      </script>
     {{-- Apply Coupon Ends --}}
 
 

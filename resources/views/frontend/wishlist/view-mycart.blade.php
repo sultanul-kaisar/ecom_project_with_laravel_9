@@ -165,22 +165,24 @@
             </div>
             <div class="col-lg-4">
                 <!-- Cart Shipping Start -->
+                @if(Session::has('coupon'))
+
+                @else
                 <div class="cart-shipping">
                     <div class="cart-title">
                         <h4 class="title">Coupon Code</h4>
                         <p>Enter your coupon code if you have one.</p>
                     </div>
                     <div class="cart-form">
-                        <form action="#">
-                            <div class="single-form">
-                                <input class="form-control" type="text" id="coupon_name" placeholder="Enter your coupon code..">
-                            </div>
-                            <div class="single-form">
-                                <button class="btn btn-dark btn-hover-primary" onclick="applyCoupon()">Apply Coupon</button>
-                            </div>
-                        </form>
+                        <div class="single-form">
+                            <input class="form-control" type="text" id="coupon_name" placeholder="Enter your coupon code..">
+                        </div>
+                        <div class="single-form">
+                            <button type="submit" class="btn btn-dark btn-hover-primary" onclick="applyCoupon()">Apply Coupon</button>
+                        </div>
                     </div>
                 </div>
+                @endif
                 <!-- Cart Shipping End -->
             </div>
             <div class="col-lg-4">

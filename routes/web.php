@@ -61,6 +61,10 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}', 'AddToCart');
     Route::get('/product/mini/cart/', 'AddMiniCart');
     Route::get('/minicart/product-remove/{rowId}', 'RemoveMiniCart');
+
+
+    Route::post('/coupon-apply', 'CouponApply');
+    Route::get('/coupon-calculation', 'CouponCalculation');
 });
 
 
@@ -82,7 +86,6 @@ Route::controller(CartPageController::class)->group(function(){
     Route::get('/cart-increment/{rowId}', 'CartIncrement');
     Route::get('/cart-decrement/{rowId}', 'CartDecrement');
 
-    Route::post('/coupon-apply', 'CouponApply');
 });
 
 
