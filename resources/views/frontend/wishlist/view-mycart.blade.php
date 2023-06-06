@@ -193,7 +193,7 @@
                     </div>
                     <div class="cart-total-table">
                         <table class="table">
-                            <tbody>
+                            <tbody id="couponCalField">
                                 <tr>
                                     <td>
                                         <p class="value">Subtotal</p>
