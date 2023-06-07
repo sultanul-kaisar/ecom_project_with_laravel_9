@@ -168,14 +168,14 @@
                 @if(Session::has('coupon'))
 
                 @else
-                <div class="cart-shipping">
+                <div class="cart-shipping" id="couponField">
                     <div class="cart-title">
                         <h4 class="title">Coupon Code</h4>
                         <p>Enter your coupon code if you have one.</p>
                     </div>
                     <div class="cart-form">
                         <div class="single-form">
-                            <input class="form-control" type="text" id="coupon_name" placeholder="Enter your coupon code..">
+                            <input class="form-control" type="text" id="coupon_name" name="coupon_name" placeholder="Enter your coupon code..">
                         </div>
                         <div class="single-form">
                             <button type="submit" class="btn btn-dark btn-hover-primary" onclick="applyCoupon()">Apply Coupon</button>
@@ -194,43 +194,7 @@
                     <div class="cart-total-table">
                         <table class="table">
                             <tbody id="couponCalField">
-                                <tr>
-                                    <td>
-                                        <p class="value">Subtotal</p>
-                                    </td>
-                                    <td>
-                                        <p class="price">£600.00</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="value">Shipping</p>
-                                    </td>
-                                    <td>
-                                        <ul class="shipping-list">
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio1" checked="">
-                                                <label for="radio1"><span></span> Flat Rate</label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio2">
-                                                <label for="radio2"><span></span> Free Shipping</label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio3">
-                                                <label for="radio3"><span></span> Local Pickup</label>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="value">Total</p>
-                                    </td>
-                                    <td>
-                                        <p class="price">£600.00</p>
-                                    </td>
-                                </tr>
+
                             </tbody>
                         </table>
                     </div>

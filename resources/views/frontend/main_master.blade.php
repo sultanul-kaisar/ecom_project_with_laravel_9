@@ -558,6 +558,8 @@
                 dataType:'json',
                 success:function(data){
                 miniCart();
+                mycart();
+                couponCalculation();
                 // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
@@ -731,6 +733,7 @@
                 url: '/cart-remove/'+id,
                 dataType:'json',
                 success:function(data){
+                    couponCalculation();
                     mycart();
                     miniCart();
                 // Start Message
@@ -765,6 +768,7 @@
                 url: "/cart-increment/"+rowId,
                 dataType:'json',
                 success:function(data){
+                    couponCalculation();
                     mycart();
                     miniCart();
                 }
@@ -779,6 +783,7 @@
                 url: "/cart-decrement/"+rowId,
                 dataType:'json',
                 success:function(data){
+                    couponCalculation();
                     mycart();
                     miniCart();
                 }
@@ -800,54 +805,193 @@
               data: {coupon_name:coupon_name},
               url: "{{ url('/coupon-apply') }}",
               success:function(data){
+                // Start Message
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
 
-                   // Start Message
-                      const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000
+                        })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
 
-                            showConfirmButton: false,
-                            timer: 3000
-                          })
-                      if ($.isEmptyObject(data.error)) {
-                          Toast.fire({
-                              type: 'success',
-                              icon: 'success',
-                              title: data.success
-                          })
-
-                      }else{
-                          Toast.fire({
-                              type: 'error',
-                              icon: 'error',
-                              title: data.error
-                          })
-
-                      }
-
-                      // End Message
-
-              }
-
-          })
+                    $('#couponField').hide();
+                    }else{
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message
+                    couponCalculation();
+                }
+            })
         }
 
 
         function couponCalculation(){
           $.ajax({
-              type: 'GET', 
+              type: 'GET',
               url: "{{ url('/coupon-calculation') }}",
               dataType: 'json',
               success:function(data){
+                if(data.total){
+                    $('#couponCalField').html(
+                        `<tr>
+                                    <td>
+                                        <p class="value">Subtotal</p>
+                                    </td>
+                                    <td>
+                                        <p class="price">$ ${data.total}</p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="value">Shipping</p>
+                                    </td>
+                                    <td>
+                                        <ul class="shipping-list">
+                                            <li class="radio">
+                                                <input type="radio" name="shipping" id="radio1" checked="">
+                                                <label for="radio1"><span></span> Flat Rate</label>
+                                            </li>
+                                            <li class="radio">
+                                                <input type="radio" name="shipping" id="radio2">
+                                                <label for="radio2"><span></span> Free Shipping</label>
+                                            </li>
+                                            <li class="radio">
+                                                <input type="radio" name="shipping" id="radio3">
+                                                <label for="radio3"><span></span> Local Pickup</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="value">Total</p>
+                                    </td>
+                                    <td>
+                                        <p class="price">$ ${data.total}</p>
+                                    </td>
+                                </tr>`
+                    )
+
+                }else {
+                    $('#couponCalField').html(
+                        `<tr>
+                            <td>
+                                <p class="value">Subtotal</p>
+                            </td>
+                            <td>
+                                <p class="price">$ ${data.subtotal}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Coupon Name</p>
+                            </td>
+                            <td>
+                                <p class="price">${data.coupon_name} &nbsp; <button type="submit" onclick="couponRemove()"><i class="fa fa-times"></i>  </button></p>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Discount Amount</p>
+                            </td>
+                            <td>
+                                <p class="price">$ ${data.discount_amount}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Shipping</p>
+                            </td>
+                            <td>
+                                <ul class="shipping-list">
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio1" checked="">
+                                        <label for="radio1"><span></span> Flat Rate</label>
+                                    </li>
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio2">
+                                        <label for="radio2"><span></span> Free Shipping</label>
+                                    </li>
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio3">
+                                        <label for="radio3"><span></span> Local Pickup</label>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Total</p>
+                            </td>
+                            <td>
+                                <p class="price">$ ${data.total_amount}</p>
+                            </td>
+                        </tr>`
+                    )
+                }
 
               }
 
           })
         }
+        couponCalculation();
 
 
       </script>
     {{-- Apply Coupon Ends --}}
+
+    <!--  //////////////// =========== Start Coupon Remove================= ////  -->
+
+    <script type="text/javascript">
+
+        function couponRemove(){
+            $.ajax({
+                type:'GET',
+                url: "{{ url('/coupon-remove') }}",
+                dataType: 'json',
+                success:function(data){
+                    mycart();
+                    couponCalculation();
+                    $('#couponField').show();
+                    $('#coupon_name').val('');
+                        // Start Message
+                    const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    }else{
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // End Message
+                }
+            });
+        }
+    </script>
+    <!--  //////////////// =========== End Coupon Remove================= ////  -->
 
 
 </body>

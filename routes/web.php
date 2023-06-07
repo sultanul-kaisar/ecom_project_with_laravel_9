@@ -61,6 +61,7 @@ Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}', 'AddToCart');
     Route::get('/product/mini/cart/', 'AddMiniCart');
     Route::get('/minicart/product-remove/{rowId}', 'RemoveMiniCart');
+    Route::get('/coupon-remove', 'CouponRemove');
 
 
     Route::post('/coupon-apply', 'CouponApply');

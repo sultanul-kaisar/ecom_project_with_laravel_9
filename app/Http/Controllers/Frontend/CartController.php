@@ -77,12 +77,15 @@ class CartController extends Controller
         $coupon = Coupon::where('coupon_name',$request->coupon_name)->where('coupon_validity','>=',Carbon::now()->format('Y-m-d'))->first();
         if ($coupon) {
 
+            $total = (int)str_replace(',','',Cart::total());
+
             Session::put('coupon',[
-                'coupon_name' => $coupon->coupon_name,
-                'coupon_discount' => $coupon->coupon_discount,
-                'discount_amount' => round(Cart::total() * $coupon->coupon_discount/100),
-                'total_amount' => round(Cart::total() - Cart::total() * $coupon->coupon_discount/100)
+            'coupon_name' => $coupon->coupon_name,
+            'coupon_discount' => $coupon->coupon_discount,
+            'discount_amount' => round($total * $coupon->coupon_discount/100),
+            'total_amount' => round($total - $total * $coupon->coupon_discount/100)
             ]);
+
 
             return response()->json(array(
 
@@ -112,6 +115,13 @@ class CartController extends Controller
             ));
 
         }
-    } // end method 
+    } // end method
+
+
+     // Remove Coupon
+     public function CouponRemove(){
+        Session::forget('coupon');
+        return response()->json(['success' => 'Coupon Remove Successfully']);
+    }//End Method
 
 }
