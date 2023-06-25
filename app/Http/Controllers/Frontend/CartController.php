@@ -8,12 +8,16 @@ use App\Models\Product;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function AddToCart(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product = Product::findOrFail($id);
 
         if ($product->discount_price == null){
@@ -67,6 +71,19 @@ class CartController extends Controller
     //Minicart Remove Product
     public function RemoveMiniCart($rowId){
     	Cart::remove($rowId);
+        if (Session::has('coupon')) {
+
+            $total = (int)str_replace(',','',Cart::total());
+            $coupon_name = Session::get('coupon')['coupon_name'];
+            $coupon = Coupon::where('coupon_name',$coupon_name)->first();
+
+            Session::put('coupon',[
+                'coupon_name' => $coupon->coupon_name,
+                'coupon_discount' => $coupon->coupon_discount,
+                'discount_amount' => round($total * $coupon->coupon_discount/100),
+                'total_amount' => round($total - $total * $coupon->coupon_discount/100)
+            ]);
+        }
     	return response()->json(['success' => 'Product Remove from Cart']);
     }//End Method
 
@@ -123,5 +140,28 @@ class CartController extends Controller
         Session::forget('coupon');
         return response()->json(['success' => 'Coupon Remove Successfully']);
     }//End Method
+
+
+
+    function CheckoutCreate(){
+        if (Auth::check()){
+
+            if (Cart::total() > 0){
+
+                $carts = Cart::content();
+                $cartQty = Cart::count();
+                $cartTotal = Cart::total();
+
+                return view('fronend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal'));
+
+            } else {
+                return redirect()->route('index')->with('warning', 'You need to shop first');
+            }
+
+        }else {
+            return redirect()->route('login')->with('warning', 'You need to login first');
+
+        }
+    }
 
 }

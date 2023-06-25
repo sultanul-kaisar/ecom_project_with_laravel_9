@@ -33,6 +33,8 @@
         {{-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js" > --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+
 
         <!--====== Use the minified version files listed below for better performance and remove the files listed above ======-->
         <!-- <link rel="stylesheet" href="{{ asset('frontend') }}/assets/css/vendor/plugins.min.css">
@@ -151,8 +153,10 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+        <script src="{{ asset('custom/toaster.min.js') }}"></script>
 
-        <script>
+
+        {{-- <script>
             @if(Session::has('message')){
                 var type = "{{ Session::get('alert-type','info') }}"
                 switch(type){
@@ -174,7 +178,46 @@
                 }
             }
             @endif
+        </script> --}}
+
+        <script>
+            @if(Session::has('message'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.success("{{ session('message') }}");
+            @endif
+
+            @if(Session::has('error'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.error("{{ session('error') }}");
+            @endif
+
+            @if(Session::has('info'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.info("{{ session('info') }}");
+            @endif
+
+            @if(Session::has('warning'))
+            toastr.options =
+            {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+                    toastr.warning("{{ session('warning') }}");
+            @endif
         </script>
+
 
 
         <!-- Cart modal Start -->
@@ -557,10 +600,10 @@
                 url: '/minicart/product-remove/'+rowId,
                 dataType:'json',
                 success:function(data){
-                miniCart();
-                mycart();
-                couponCalculation();
-                // Start Message
+                    miniCart();
+                    cart();
+                    couponCalculation();
+                    // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -633,7 +676,7 @@
         wishlist();
 
 
-            //Remove wishlist Product
+        //Remove wishlist Product
         function wishlistRemove(id){
             $.ajax({
                 type: 'GET',
@@ -672,7 +715,7 @@
 
     {{-- Load Cart-list data --}}
     <script type="text/javascript">
-        function mycart(){
+        function cart(){
             $.ajax({
                 type: 'GET',
                 url: '/get-cart-product',
@@ -723,35 +766,37 @@
                 }
             })
         }
-        mycart();
+        cart();
 
 
-            //Remove cart Product
+        //Remove cart Product
         function cartRemove(id){
             $.ajax({
                 type: 'GET',
                 url: '/cart-remove/'+id,
                 dataType:'json',
                 success:function(data){
-                    couponCalculation();
-                    mycart();
-                    miniCart();
+                cart();
+                couponCalculation();
+                miniCart();
                 // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
-                        icon: 'success',
+
                         showConfirmButton: false,
                         timer: 3000
                         })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                             type: 'success',
+                            icon: 'success',
                             title: data.success
                         })
                     }else{
                         Toast.fire({
                             type: 'error',
+                            icon: 'error',
                             title: data.error
                         })
                     }
@@ -769,7 +814,7 @@
                 dataType:'json',
                 success:function(data){
                     couponCalculation();
-                    mycart();
+                    cart();
                     miniCart();
                 }
             });
@@ -784,7 +829,7 @@
                 dataType:'json',
                 success:function(data){
                     couponCalculation();
-                    mycart();
+                    cart();
                     miniCart();
                 }
             });
@@ -797,15 +842,17 @@
 
     {{-- Apply Coupon Start --}}
     <script type="text/javascript">
-        function applyCoupon(){
-          var coupon_name = $('#coupon_name').val();
-          $.ajax({
-              type: 'POST',
-              dataType: 'json',
-              data: {coupon_name:coupon_name},
-              url: "{{ url('/coupon-apply') }}",
-              success:function(data){
-                // Start Message
+          function applyCoupon(){
+            var coupon_name = $('#coupon_name').val();
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                data: {coupon_name:coupon_name},
+                url: "{{ url('/coupon-apply') }}",
+                success:function(data){
+                    couponCalculation();
+                    $('#couponField').hide();
+                    // Start Message
                     const Toast = Swal.mixin({
                         toast: true,
                         position: 'top-end',
@@ -819,8 +866,6 @@
                             icon: 'success',
                             title: data.success
                         })
-
-                    $('#couponField').hide();
                     }else{
                         Toast.fire({
                             type: 'error',
@@ -829,7 +874,6 @@
                         })
                     }
                     // End Message
-                    couponCalculation();
                 }
             })
         }
@@ -844,42 +888,42 @@
                 if(data.total){
                     $('#couponCalField').html(
                         `<tr>
-                                    <td>
-                                        <p class="value">Subtotal</p>
-                                    </td>
-                                    <td>
-                                        <p class="price">$ ${data.total}</p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="value">Shipping</p>
-                                    </td>
-                                    <td>
-                                        <ul class="shipping-list">
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio1" checked="">
-                                                <label for="radio1"><span></span> Flat Rate</label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio2">
-                                                <label for="radio2"><span></span> Free Shipping</label>
-                                            </li>
-                                            <li class="radio">
-                                                <input type="radio" name="shipping" id="radio3">
-                                                <label for="radio3"><span></span> Local Pickup</label>
-                                            </li>
-                                        </ul>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <p class="value">Total</p>
-                                    </td>
-                                    <td>
-                                        <p class="price">$ ${data.total}</p>
-                                    </td>
-                                </tr>`
+                            <td>
+                                <p class="value">Subtotal</p>
+                            </td>
+                            <td>
+                                <p class="price">$ ${data.total}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Shipping</p>
+                            </td>
+                            <td>
+                                <ul class="shipping-list">
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio1" checked="">
+                                        <label for="radio1"><span></span> Flat Rate</label>
+                                    </li>
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio2">
+                                        <label for="radio2"><span></span> Free Shipping</label>
+                                    </li>
+                                    <li class="radio">
+                                        <input type="radio" name="shipping" id="radio3">
+                                        <label for="radio3"><span></span> Local Pickup</label>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p class="value">Total</p>
+                            </td>
+                            <td>
+                                <p class="price">$ ${data.total}</p>
+                            </td>
+                        </tr>`
                     )
 
                 }else {
@@ -961,18 +1005,18 @@
                 url: "{{ url('/coupon-remove') }}",
                 dataType: 'json',
                 success:function(data){
-                    mycart();
+                    cart();
                     couponCalculation();
                     $('#couponField').show();
                     $('#coupon_name').val('');
-                        // Start Message
+                    // Start Message
                     const Toast = Swal.mixin({
-                            toast: true,
-                            position: 'top-end',
+                        toast: true,
+                        position: 'top-end',
 
-                            showConfirmButton: false,
-                            timer: 3000
-                        })
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
                     if ($.isEmptyObject(data.error)) {
                         Toast.fire({
                             type: 'success',

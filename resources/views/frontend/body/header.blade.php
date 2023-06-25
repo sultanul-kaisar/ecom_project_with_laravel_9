@@ -2,7 +2,7 @@
   <!-- Header Start  -->
     <div class="header-area header-white header-sticky d-none d-lg-block">
 
-        <nav class="autohide navbar navbar-expand-lg navbar-primary bg-transparent">
+        {{-- <nav class="autohide navbar navbar-expand-lg navbar-primary bg-transparent">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,7 +32,7 @@
                   </ul>
                 </div>
               </div>
-        </nav>
+        </nav> --}}
         <div class="container position-relative" style="margin-top: 10px">
             <div class="row align-items-center">
                 <div class="col-lg-3">
@@ -113,11 +113,13 @@
                                 <ul class="dropdown-menu dropdown-profile">
                                     <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                                     {{-- <li><a href="checkout.html">Checkout</a></li> --}}
+                                    <li><a href="{{ route('mycart') }}">My Cart</a></li>
                                     <li><a href="{{ route('user.logout') }}">↩ Sign Out</a></li>
                                 </ul>
                             @else
                                 <ul class="dropdown-menu dropdown-profile">
                                     {{-- <li><a href="checkout.html">Checkout</a></li> --}}
+                                    <li><a href="{{ route('mycart') }}">My Cart</a></li>
                                     <li><a href="{{ route('login') }}">Sign In</a></li>
                                     {{-- <li><a href="{{ route('register') }}">Sign Up</a></li> --}}
                                 </ul>
@@ -170,7 +172,7 @@
                                     </div>
                                 </div>
                                 <div class="checkout-btn">
-                                    <a href="checkout.html" class="btn btn-dark btn-hover-primary d-block">Checkout</a>
+                                    <a href="{{ route('checkout') }}" class="btn btn-dark btn-hover-primary d-block">Checkout</a>
                                 </div>
                             </div>
                         </div>
@@ -222,11 +224,13 @@
                                     <ul class="dropdown-menu dropdown-profile">
                                         <li><a href="{{ route('user.dashboard') }}">Dashboard</a></li>
                                         {{-- <li><a href="checkout.html">Checkout</a></li> --}}
+                                        <li><a href="{{ route('mycart') }}">My Cart</a></li>
                                         <li><a href="{{ route('user.logout') }}">↩ Sign Out</a></li>
                                     </ul>
                                 @else
                                     <ul class="dropdown-menu dropdown-profile">
                                         {{-- <li><a href="checkout.html">Checkout</a></li> --}}
+                                        <li><a href="{{ route('mycart') }}">My Cart</a></li>
                                         <li><a href="{{ route('login') }}">Sign In</a></li>
                                         {{-- <li><a href="{{ route('register') }}">Sign Up</a></li> --}}
                                     </ul>

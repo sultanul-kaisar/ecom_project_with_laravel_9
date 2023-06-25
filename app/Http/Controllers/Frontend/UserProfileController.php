@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Facades\Image;
 
 class UserProfileController extends Controller

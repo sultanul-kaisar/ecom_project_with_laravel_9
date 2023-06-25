@@ -57,6 +57,7 @@ Route::controller(IndexController::class)->group(function (){
 
 });
 
+
 Route::controller(CartController::class)->group(function (){
     Route::post('/cart/data/store/{id}', 'AddToCart');
     Route::get('/product/mini/cart/', 'AddMiniCart');
@@ -66,6 +67,8 @@ Route::controller(CartController::class)->group(function (){
 
     Route::post('/coupon-apply', 'CouponApply');
     Route::get('/coupon-calculation', 'CouponCalculation');
+
+    Route::get('/checkout', 'CheckoutCreate')->name('checkout');
 });
 
 
