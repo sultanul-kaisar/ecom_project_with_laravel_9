@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\BrandController;
@@ -322,6 +323,20 @@ Route::middleware(['auth:admin'])->group(function (){
 
             Route::get('/delete/{id}', 'DeletePolicy')->name('policy.delete');
 
+        });
+    });
+
+
+    //Footer Routes
+    Route::prefix('footer')->group(function (){
+        Route::controller(FooterController::class)->group(function (){
+            Route::get('/view', 'AllFooter')->name('all.footer');
+            Route::get('/create', 'AddFooter')->name('add.footer');
+
+            Route::post('/store', 'StoreFooter')->name('store.footer');
+
+            Route::get('/edit/{id}', 'EditFooter')->name('edit.footer');
+            Route::post('/update/{id}', 'UpdateFooter')->name('update.footer');
         });
     });
 });

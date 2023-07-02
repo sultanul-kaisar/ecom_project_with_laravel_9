@@ -1,4 +1,6 @@
-
+@php
+    $footer = \App\Models\Footer::first();
+@endphp
   <!-- Header Start  -->
     <div class="header-area header-white header-sticky d-none d-lg-block">
 
@@ -38,7 +40,9 @@
                 <div class="col-lg-3">
                     <!-- Header Logo Start -->
                     <div class="header-logo">
-                        <a href="{{ route('index') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png" alt="Logo"></a>
+                        @if(!empty($footer->footer_logo))
+                            <a href="{{ route('index') }}"><img src="{{ url($footer->footer_logo) }}" alt="Logo"></a>
+                        @endif
                     </div>
                     <!-- Header Logo End -->
                 </div>
@@ -48,7 +52,7 @@
                             <li>
                                 <a href="{{ route('index') }}">Home</a>
                             </li>
-                            <li><a href="about.html">About</a></li>
+{{--                            <li><a href="about.html">About</a></li>--}}
                             @php
                                 $categories = \App\Models\Category::orderBy('category_title', 'ASC')->get();
                             @endphp
@@ -82,7 +86,7 @@
                             <li>
                                 <a href="{{ route('blogs') }}">Blogs</a>
                             </li>
-                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="#">Contact</a></li>
                         </ul>
 
                     </div>
@@ -208,7 +212,9 @@
 
                         <!-- Header Logo Start -->
                         <div class="header-logo text-center">
-                            <a href="{{ route('index') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png" alt="Logo"></a>
+                            @if(!empty($footer->footer_logo))
+                                <a href="{{ route('index') }}"><img src="{{ url($footer->footer_logo) }}" alt="Logo"></a>
+                            @endif
                         </div>
                         <!-- Header Logo End -->
 
@@ -274,8 +280,8 @@
 
         <!-- Canvas Action Start -->
         <div class="canvas-action">
-            <a class="action" href="compare.html"><i class="icon-sliders"></i> Compare <span class="action-num">(3)</span></a>
-            <a class="action" href="wishlist.html"><i class="icon-heart"></i> Wishlist <span class="action-num">(3)</span></a>
+{{--            <a class="action" href="compare.html"><i class="icon-sliders"></i> Compare <span class="action-num">(3)</span></a>--}}
+            <a class="action" href="{{ route('wishlist') }}"><i class="icon-heart"></i> Wishlist</a>
         </div>
         <!-- Canvas Action end -->
 
@@ -293,7 +299,7 @@
                     <li>
                         <a href="{{ route('index') }}">Home</a>
                     </li>
-                    <li><a href="about.html">About</a></li>
+{{--                    <li><a href="about.html">About</a></li>--}}
 
                     @foreach($categories as $cat)
                         <li>
@@ -324,7 +330,7 @@
                     <li>
                         <a href="{{ route('blogs') }}">Blogs</a>
                     </li>
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
 
             </nav>

@@ -24,10 +24,10 @@ class BrandController extends Controller
             'brand_image' => 'required'
         ]);
 
-            $image = $request->file('brand_image');
-            $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(150, 80)->save('upload/brands/'.$image_name);
-            $save_image = 'upload/brands/'.$image_name;
+        $image = $request->file('brand_image');
+        $image_name = hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(150, 80)->save('upload/brands/'.$image_name);
+        $save_image = 'upload/brands/'.$image_name;
 
         Brand::insert([
             'brand_name' => $request->brand_name,

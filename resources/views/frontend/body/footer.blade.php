@@ -1,3 +1,7 @@
+@php
+    $footer = \App\Models\Footer::first();
+@endphp
+
 <div class="section footer-section">
 
     <!-- Footer Top Start -->
@@ -8,7 +12,9 @@
 
                     <!-- Footer Logo Start -->
                     <div class="footer-logo">
-                        <a href="{{ route('index') }}"><img src="{{ asset('frontend') }}/assets/images/logo.png" alt="Logo"></a>
+                        @if(!empty($footer->footer_logo))
+                            <a href="{{ route('index') }}"><img src="{{ url($footer->footer_logo) }}" alt="Logo"></a>
+                        @endif
                     </div>
                     <!-- Footer Logo End -->
 
@@ -24,7 +30,9 @@
 
                             <div class="contact-content">
                                 <h6 class="title">Call Us:</h6>
-                                <p>00 123 456 789</p>
+                                @if(!empty($footer->phone))
+                                    <p>{{ $footer->phone }}</p>
+                                @endif
                             </div>
                         </div>
                         <div class="footer-payment">
@@ -126,7 +134,10 @@
                         <h4 class="footer-widget-title">About Us</h4>
 
                         <div class="widget-about">
-                            <p>Lorem ipsum dolor sit amet consect adipisicing elit sed do eiusmod temp incididunt ut labore et dolore magna aliqua. Ut enim ad minim</p>
+                            @if(!empty($footer->details))
+                                <p>{!! $footer->details !!}</p>
+                            @endif
+
                         </div>
                         <div class="widget-social">
                             <ul>
