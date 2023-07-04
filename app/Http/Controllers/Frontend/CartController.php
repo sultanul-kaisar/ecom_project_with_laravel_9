@@ -152,7 +152,7 @@ class CartController extends Controller
                 $cartQty = Cart::count();
                 $cartTotal = Cart::total();
 
-                return view('fronend.checkout.checkout-view', compact('carts', 'cartQty', 'cartTotal'));
+                return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartTotal'));
 
             } else {
                 return redirect()->route('index')->with('warning', 'You need to shop first');
