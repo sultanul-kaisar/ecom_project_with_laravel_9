@@ -121,11 +121,6 @@
                                             <option value="0">Select a country *</option>
                                             <option value="1">Bangladesh</option>
                                             <option value="2">Canada</option>
-                                            <option value="3">Colombia</option>
-                                            <option value="4">Indonesia</option>
-                                            <option value="5">Italy</option>
-                                            <option value="6">Pakistan</option>
-                                            <option value="7">Turkey</option>
                                         </select>
                                     </div>
                                 </div>
@@ -149,68 +144,6 @@
                                             <option value="">Select an District *</option>
                                             <option value="BAG">Bagerhat</option>
                                             <option value="BAN">Bandarban</option>
-                                            <option value="BAR">Barguna</option>
-                                            <option value="BARI">Barisal</option>
-                                            <option value="BHO">Bhola</option>
-                                            <option value="BOG">Bogra</option>
-                                            <option value="BRA">Brahmanbaria</option>
-                                            <option value="CHA">Chandpur</option>
-                                            <option value="CHI">Chittagong</option>
-                                            <option value="CHU">Chuadanga</option>
-                                            <option value="COM">Comilla</option>
-                                            <option value="COX">Cox's Bazar</option>
-                                            <option value="DHA">Dhaka</option>
-                                            <option value="DIN">Dinajpur</option>
-                                            <option value="FAR">Faridpur </option>
-                                            <option value="FEN">Feni</option>
-                                            <option value="GAI">Gaibandha</option>
-                                            <option value="GAZI">Gazipur</option>
-                                            <option value="GOP">Gopalganj</option>
-                                            <option value="HAB">Habiganj</option>
-                                            <option value="JAM">Jamalpur</option>
-                                            <option value="JES">Jessore</option>
-                                            <option value="JHA">Jhalokati</option>
-                                            <option value="JHE">Jhenaidah</option>
-                                            <option value="JOY">Joypurhat</option>
-                                            <option value="KHA">Khagrachhari</option>
-                                            <option value="KHU">Khulna</option>
-                                            <option value="KIS">Kishoreganj</option>
-                                            <option value="KUR">Kurigram</option>
-                                            <option value="KUS">Kushtia</option>
-                                            <option value="LAK">Lakshmipur</option>
-                                            <option value="LAL">Lalmonirhat</option>
-                                            <option value="MAD">Madaripur</option>
-                                            <option value="MAG">Magura</option>
-                                            <option value="MAN">Manikganj </option>
-                                            <option value="MEH">Meherpur</option>
-                                            <option value="MOU">Moulvibazar</option>
-                                            <option value="MUN">Munshiganj</option>
-                                            <option value="MYM">Mymensingh</option>
-                                            <option value="NAO">Naogaon</option>
-                                            <option value="NAR">Narail</option>
-                                            <option value="NARG">Narayanganj</option>
-                                            <option value="NARD">Narsingdi</option>
-                                            <option value="NAT">Natore</option>
-                                            <option value="NAW">Nawabganj</option>
-                                            <option value="NET">Netrakona</option>
-                                            <option value="NIL">Nilphamari</option>
-                                            <option value="NOA">Noakhali</option>
-                                            <option value="PAB">Pabna</option>
-                                            <option value="PAN">Panchagarh</option>
-                                            <option value="PAT">Patuakhali</option>
-                                            <option value="PIR">Pirojpur</option>
-                                            <option value="RAJB">Rajbari</option>
-                                            <option value="RAJ">Rajshahi</option>
-                                            <option value="RAN">Rangamati</option>
-                                            <option value="RANP">Rangpur</option>
-                                            <option value="SAT">Satkhira</option>
-                                            <option value="SHA">Shariatpur</option>
-                                            <option value="SHE">Sherpur</option>
-                                            <option value="SIR">Sirajganj</option>
-                                            <option value="SUN">Sunamganj</option>
-                                            <option value="SYL">Sylhet</option>
-                                            <option value="TAN">Tangail</option>
-                                            <option value="THA">Thakurgaon</option>
                                         </select>
                                     </div>
                                 </div>
@@ -271,12 +204,6 @@
                                             <select class="select2">
                                                 <option value="0">Select a Country *</option>
                                                 <option value="1">Bangladesh</option>
-                                                <option value="2">Canada</option>
-                                                <option value="3">Colombia</option>
-                                                <option value="4">Indonesia</option>
-                                                <option value="5">Italy</option>
-                                                <option value="6">Pakistan</option>
-                                                <option value="7">Turkey</option>
                                             </select>
                                         </div>
                                     </div>
@@ -300,68 +227,6 @@
                                                 <option value="">Select an District *</option>
                                                 <option value="BAG">Bagerhat</option>
                                                 <option value="BAN">Bandarban</option>
-                                                <option value="BAR">Barguna</option>
-                                                <option value="BARI">Barisal</option>
-                                                <option value="BHO">Bhola</option>
-                                                <option value="BOG">Bogra</option>
-                                                <option value="BRA">Brahmanbaria</option>
-                                                <option value="CHA">Chandpur</option>
-                                                <option value="CHI">Chittagong</option>
-                                                <option value="CHU">Chuadanga</option>
-                                                <option value="COM">Comilla</option>
-                                                <option value="COX">Cox's Bazar</option>
-                                                <option value="DHA">Dhaka</option>
-                                                <option value="DIN">Dinajpur</option>
-                                                <option value="FAR">Faridpur </option>
-                                                <option value="FEN">Feni</option>
-                                                <option value="GAI">Gaibandha</option>
-                                                <option value="GAZI">Gazipur</option>
-                                                <option value="GOP">Gopalganj</option>
-                                                <option value="HAB">Habiganj</option>
-                                                <option value="JAM">Jamalpur</option>
-                                                <option value="JES">Jessore</option>
-                                                <option value="JHA">Jhalokati</option>
-                                                <option value="JHE">Jhenaidah</option>
-                                                <option value="JOY">Joypurhat</option>
-                                                <option value="KHA">Khagrachhari</option>
-                                                <option value="KHU">Khulna</option>
-                                                <option value="KIS">Kishoreganj</option>
-                                                <option value="KUR">Kurigram</option>
-                                                <option value="KUS">Kushtia</option>
-                                                <option value="LAK">Lakshmipur</option>
-                                                <option value="LAL">Lalmonirhat</option>
-                                                <option value="MAD">Madaripur</option>
-                                                <option value="MAG">Magura</option>
-                                                <option value="MAN">Manikganj </option>
-                                                <option value="MEH">Meherpur</option>
-                                                <option value="MOU">Moulvibazar</option>
-                                                <option value="MUN">Munshiganj</option>
-                                                <option value="MYM">Mymensingh</option>
-                                                <option value="NAO">Naogaon</option>
-                                                <option value="NAR">Narail</option>
-                                                <option value="NARG">Narayanganj</option>
-                                                <option value="NARD">Narsingdi</option>
-                                                <option value="NAT">Natore</option>
-                                                <option value="NAW">Nawabganj</option>
-                                                <option value="NET">Netrakona</option>
-                                                <option value="NIL">Nilphamari</option>
-                                                <option value="NOA">Noakhali</option>
-                                                <option value="PAB">Pabna</option>
-                                                <option value="PAN">Panchagarh</option>
-                                                <option value="PAT">Patuakhali</option>
-                                                <option value="PIR">Pirojpur</option>
-                                                <option value="RAJB">Rajbari</option>
-                                                <option value="RAJ">Rajshahi</option>
-                                                <option value="RAN">Rangamati</option>
-                                                <option value="RANP">Rangpur</option>
-                                                <option value="SAT">Satkhira</option>
-                                                <option value="SHA">Shariatpur</option>
-                                                <option value="SHE">Sherpur</option>
-                                                <option value="SIR">Sirajganj</option>
-                                                <option value="SUN">Sunamganj</option>
-                                                <option value="SYL">Sylhet</option>
-                                                <option value="TAN">Tangail</option>
-                                                <option value="THA">Thakurgaon</option>
                                             </select>
                                         </div>
                                     </div>
@@ -406,38 +271,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ( $carts as $item)
                                     <tr>
                                         <td class="Product-name">
-                                            <p>Bodysuit With Long Sleeves × 1</p>
+                                            <p>{{ $item->name }} × {{ $item->qty }}</p>
                                         </td>
                                         <td class="Product-price">
-                                            <p>$150.00</p>
+                                            <p>${{ $item->subtotal }}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="Product-name">
-                                            <p>Classic Polo Shirt × 1</p>
-                                        </td>
-                                        <td class="Product-price">
-                                            <p>$150.00</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="Product-name">
-                                            <p>Trousers With Side Stripe × 1</p>
-                                        </td>
-                                        <td class="Product-price">
-                                            <p>$150.00</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="Product-name">
-                                            <p>Biker Jacket × 1</p>
-                                        </td>
-                                        <td class="Product-price">
-                                            <p>$150.00</p>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -445,38 +288,78 @@
                                             <p>Subtotal</p>
                                         </td>
                                         <td class="Product-price">
-                                            <p>$150.00</p>
+                                            <p>${{ $cartTotal}}</p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td class="Product-name">
-                                            <p>Shipping</p>
-                                        </td>
-                                        <td class="Product-price">
-                                            <ul class="shipping-list">
-                                                <li class="radio">
-                                                    <input type="radio" name="shipping" id="radio1" checked>
-                                                    <label for="radio1"><span></span> Flat Rate</label>
-                                                </li>
-                                                <li class="radio">
-                                                    <input type="radio" name="shipping" id="radio2">
-                                                    <label for="radio2"><span></span> Free Shipping</label>
-                                                </li>
-                                                <li class="radio">
-                                                    <input type="radio" name="shipping" id="radio3">
-                                                    <label for="radio3"><span></span> Local Pickup</label>
-                                                </li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="Product-name">
-                                            <p>Total</p>
-                                        </td>
-                                        <td class="total-price">
-                                            <p>$600.00</p>
-                                        </td>
-                                    </tr>
+                                    @if(Session::has('coupon'))
+                                        <tr>
+                                            <td class="Product-name">
+                                                <p>Coupon: {{ session()->get('coupon')['coupon_name'] }} ( {{ session()->get('coupon')['coupon_discount'] }}% )</p>
+                                            </td>
+                                            <td class="Product-price">
+                                                <p>-${{ session()->get('coupon')['discount_amount'] }}</p>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Product-name">
+                                                <p>Shipping</p>
+                                            </td>
+                                            <td class="Product-price">
+                                                <ul class="shipping-list">
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio1" checked>
+                                                        <label for="radio1"><span></span> Flat Rate</label>
+                                                    </li>
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio2">
+                                                        <label for="radio2"><span></span> Free Shipping</label>
+                                                    </li>
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio3">
+                                                        <label for="radio3"><span></span> Local Pickup</label>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Product-name">
+                                                <p>Total</p>
+                                            </td>
+                                            <td class="total-price">
+                                                <p>${{ session()->get('coupon')['total_amount'] }}</p>
+                                            </td>
+                                        </tr>
+                                    @else
+                                        <tr>
+                                            <td class="Product-name">
+                                                <p>Shipping</p>
+                                            </td>
+                                            <td class="Product-price">
+                                                <ul class="shipping-list">
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio1" checked>
+                                                        <label for="radio1"><span></span> Flat Rate</label>
+                                                    </li>
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio2">
+                                                        <label for="radio2"><span></span> Free Shipping</label>
+                                                    </li>
+                                                    <li class="radio">
+                                                        <input type="radio" name="shipping" id="radio3">
+                                                        <label for="radio3"><span></span> Local Pickup</label>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="Product-name">
+                                                <p>Total</p>
+                                            </td>
+                                            <td class="total-price">
+                                                <p>${{ $cartTotal }}</p>
+                                            </td>
+                                        </tr>
+                                    @endif
                                 </tfoot>
                             </table>
                         </div>

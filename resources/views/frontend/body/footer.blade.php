@@ -13,7 +13,8 @@
                     <!-- Footer Logo Start -->
                     <div class="footer-logo">
                         @if(!empty($footer->footer_logo))
-                            <a href="{{ route('index') }}"><img src="{{ url($footer->footer_logo) }}" alt="Logo"></a>
+                            <a href="{{ route('index') }}"><img src="{{ url($footer->footer_logo) }}" alt="Logo"></a><br>
+                            <span>Chowdhury E-mart</span>
                         @endif
                     </div>
                     <!-- Footer Logo End -->
